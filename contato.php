@@ -5,7 +5,7 @@ define('TITLE', 'Contato');
 include('includes/navbar.php');
 
 ?>
-
+<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 <div class="container contato" style="margin-top:100px;">
   <div class="row">
     <div class="col-md-8">

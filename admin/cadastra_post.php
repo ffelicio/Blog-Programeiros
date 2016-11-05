@@ -87,7 +87,7 @@ include('includes/navbar.php');
                         $result->bindParam(':conteudo',$conteudo, PDO::PARAM_STR);
                         $result->bindParam(':imagem',$novoNome, PDO::PARAM_STR);
                         $result->bindParam(':categoria',$categoria, PDO::PARAM_STR);
-                        $result->bindParam(':usuario',$nomeUsuario, PDO::PARAM_STR);
+                        $result->bindParam(':usuario',$usuario, PDO::PARAM_STR);
                         $result->bindParam(':data',$data, PDO::PARAM_STR);
                         $result->bindParam(':hora',$hora, PDO::PARAM_STR);
                         $result->execute();

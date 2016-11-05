@@ -62,10 +62,23 @@ h3.titulo-thumb {
 .contato form textarea {
 	border: none;
 	box-shadow: none;
-	border-bottom: 2px solid #f14444;
+	border-bottom: 2px solid #2c3e50;
 	border-radius: 0px;
 }
 
 .contato form textarea {
 	width: 100%;
+}
+
+.autor img {
+	width: 100px;
+}
+.alert-usuario {
+	background-color: #cad9e7;
+	color: #002185;
+	border: 1px solid #2c3e50;
+}
+.autor .img-usuario {
+	border: 5px solid #2c3e50;
+	border-radius: 5px;
 }

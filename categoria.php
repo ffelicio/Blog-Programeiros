@@ -3,7 +3,14 @@
 @define(TITLE, "Programeiros");
 
 include('includes/navbar.php');
-$sql = 'SELECT * FROM tb_postagens ORDER BY id DESC LIMIT 6';
+
+if(!isset($_GET['c'])) {
+  header('location:index.php');
+} else {
+  $categoria = $_GET['c'];
+  $sql = "SELECT * FROM tb_postagens WHERE categoria = '$categoria' ORDER BY id DESC LIMIT 6";
+}
+
 
 $stmt = $PDO->prepare($sql);
 $stmt->execute();

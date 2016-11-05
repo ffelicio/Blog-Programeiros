@@ -24,10 +24,29 @@ while ($postagem = $stmt->fetch(PDO::FETCH_ASSOC)) {
        $id = $postagem["id"];
        $titulo = $postagem["titulo"];
        $imagem = $postagem["imagem"];
+       $usuario = $postagem["usuario"];
        $conteudo = $postagem["conteudo"];
     }
 
+$sqlUser = "SELECT * FROM login WHERE usuario=:usuario";
+
+      try {
+      $stmt2 = $PDO->prepare($sqlUser);
+      $stmt2->bindParam(':usuario',$usuario, PDO::PARAM_STR);
+      $stmt2->execute();
+      } catch(PDOException $erro) {
+          echo $erro;
+      }
+
+      while ($user = $stmt2->fetch(PDO::FETCH_ASSOC)) {
+             $nome = $user["nome"];
+             $descricao = $user["descricao"];
+             $thumb = $user["thumb"];
+    }
+
+
 ?>
+<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 <div class="container">
 <div class="post-unico" style="margin-top:100px;">
   <div class="col-md-8">
@@ -39,6 +58,22 @@ while ($postagem = $stmt->fetch(PDO::FETCH_ASSOC)) {
         <p><?php echo $conteudo; ?></p>
       </div>
     </div>
+    <br>
+    <hr>
+    <br>
+      <div class="alert alert-usuario autor">
+        <div class="row">
+          <div class="col-md-2">
+            <img src="upload/users/<?php echo $thumb; ?>" alt="<?php echo $nome; ?>" class="img-usuario">
+          </div>
+          <div class="col-md-8">
+            <div class="texto-user">
+              <h3>por <?php echo $nome; ?></h3>
+              <p><?php echo $descricao; ?></p>
+            </div>
+          </div>
+        </div>
+      </div>
     <br>
     <hr>
     <br>

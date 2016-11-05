@@ -30,17 +30,21 @@ include('includes/db.php');
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <h1 class="brand-text">Programeiros Blog</h1>
+      <a href="index.php"><h1 class="brand-text">Programeiros Blog</h1></a>
     </div>
     <div class="collapse navbar-collapse" id="navbar">
       <ul class="nav navbar-nav navbar-right">
         <li class="active"><a href="index.php">Home</a></li>
+        <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Categorias <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="categoria.php?c=php">PHP</a></li>
+            <li><a href="categoria.php?c=python">Python</a></li>
+            <li><a href="categoria.php?c=ruby">Ruby</a></li>
+          </ul>
+        </li>
         <li><a href="contato.php">Contato</a></li>
         <li ><a href="login.php">Admin</a></li>
       </ul>
-      <form class="navbar-form navbar-right search-form" role="search">
-        <input type="text" class="form-control" placeholder="Busca..." />
-      </form>
     </div>
   </div>
 </nav>
