@@ -79,9 +79,9 @@
 <!-- Bootstrap core JavaScript -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
+<script src="/Blog-Programeiros/assets/js/bootstrap.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="assets/css/footer.css">
+<link rel="stylesheet" type="text/css" href="/Blog-Programeiros/assets/css/footer.css">
 
 </body>
 </html>

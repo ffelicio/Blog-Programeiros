@@ -2,6 +2,9 @@
 
 @define(TITLE, "Programeiros");
 
+include('includes/config.php');
+include('includes/db.php');
+
 include('includes/navbar.php');
 $sql = 'SELECT * FROM tb_postagens ORDER BY id DESC LIMIT 6';
 

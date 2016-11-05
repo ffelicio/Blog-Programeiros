@@ -2,7 +2,9 @@
 
 @define(TITLE, "Programeiros");
 
-include('includes/navbar.php');
+include('../includes/config.php');
+include('../includes/db.php');
+include('../includes/navbar.php');
 
 if(!isset($_GET['c'])) {
   header('location:index.php');
@@ -16,7 +18,6 @@ $stmt = $PDO->prepare($sql);
 $stmt->execute();
 
 ?>
-<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 <section id="blog" class="container posts" style="margin-top:100px;>
 
 <div class="row">
@@ -34,7 +35,7 @@ $stmt->execute();
       <div class='col-md-6'>
           <div class='thumbnail'>
             <a href='post.php?id=<?php echo $posts['id']; ?>'><h3 class="titulo-thumb"><?php echo $posts['titulo']; ?></h3>
-            <img src='upload/postagens/<?php echo $posts['imagem'] ?>' alt=''></a>
+            <img src='../upload/postagens/<?php echo $posts['imagem'] ?>' alt=''></a>
             <div class='caption'>
               <p><?php echo $conteudo; ?>...</p><br>
               <p><a href='post.php?id=<?php echo $posts['id']; ?>' class='btn btn-primary pull-right btn-mais' role='button'>Ler Mais</a></p>
@@ -48,11 +49,11 @@ $stmt->execute();
 
   </div>
 </div>
-
+<link rel="stylesheet" type="text/css" href="../assets/css/footer.css">
 <?php
 
-  include ("includes/sidebar.php");
+  include("../includes/sidebar.php");
 
-  include ("includes/footer.php");
+  include("../includes/footer.php");
 
 ?>
