@@ -16,6 +16,7 @@
                     $nome = trim(strip_tags($_POST['nome']));
                     $email = trim(strip_tags($_POST['email']));
                     $usuario = trim(strip_tags($_POST['usuario']));
+                    $descricao = trim(strip_tags($_POST['descricao']));
                     $senha = trim(strip_tags(md5(strrev($_POST['senha']))));
                     $rep_senha = trim(strip_tags(md5(strrev($_POST['rep_senha']))));
                     $data = date('Y/m/d');
@@ -41,13 +42,14 @@
                                 </div>';
                             } else {
 
-                        $insert = "INSERT INTO login (nome,email,usuario,senha,data) VALUES (:nome,:email,:usuario,:senha,:data)";
+                        $insert = "INSERT INTO login (nome,email,usuario,descricao,senha,data) VALUES (:nome,:email,:usuario,:descricao,:senha,:data)";
 
                         try {
                             $result = $PDO->prepare($insert);
                             $result->bindParam(':nome',$nome, PDO::PARAM_STR);
                             $result->bindParam(':email',$email, PDO::PARAM_STR);
                             $result->bindParam(':usuario',$usuario, PDO::PARAM_STR);
+                            $result->bindParam(':descricao',$descricao, PDO::PARAM_STR);
                             $result->bindParam(':senha',$senha, PDO::PARAM_INT);
                             $result->bindParam(':data',$data, PDO::PARAM_STR);
                             $result->execute();
@@ -97,6 +99,11 @@
                             <div class="form-group">
                                 <label for="usuario">Usuário:</label>
                                     <input type="text" class="form-control" id="usuario" name="usuario"  placeholder="Username" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="descricao">Descrição:</label>
+                                    <input type="text" class="form-control" id="descricao" name="descricao"  placeholder="Descrição" required>
                             </div>
 
                             <div class="form-group">
