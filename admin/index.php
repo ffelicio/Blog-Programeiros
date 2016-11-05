@@ -1,117 +1,97 @@
 <?php
 
-include('includes/navbar.php');
+session_start();
+
+include('../includes/config.php');
+include('../includes/db.php');
+
+if(isset($_POST['login'])){
+    $usuario =  trim(strip_tags($_POST['usuario']));
+    $senha = trim(strip_tags($_POST['senha']));
+    $cript_pass = md5(strrev($senha));
+
+    $query = "SELECT * FROM login WHERE BINARY usuario=:usuario AND BINARY senha=:senha";
+
+    try {
+        $result = $PDO->prepare($query);
+        $result->bindParam(':usuario',$usuario, PDO::PARAM_STR);
+        $result->bindParam(':senha',$cript_pass, PDO::PARAM_STR);
+        $result->execute();
+        $contar = $result->rowCount();
+        if($contar>0) {
+            $usuario =  $_POST['usuario'];
+            $senha = $cript_pass;
+            $_SESSION['usuario'] = $usuario;
+            $_SESSION['senha'] = $cript_pass;
+
+            header("Location:admin_page.php");
+
+        } else {
+            header("Location:index.php?err=Dados incorretos!!");
+            exit();
+        }
+
+    } catch(PDOException $e) {
+        echo 'Erro:' . $e;
+    }
+}
 
 ?>
-
-</div>
-<!-- row -->
-<?php
-	//excluir
-	if(isset($_GET['delete'])){
-		$id_delete = $_GET['delete'];
-
-		// seleciona a imagem
-		$seleciona = "SELECT * from tb_postagens WHERE id= :id_delete";
-		try{
-			$result = $PDO->prepare($seleciona);
-			$result->bindParam('id_delete',$id_delete, PDO::PARAM_INT);
-			$result->execute();
-			$contar = $result->rowCount();
-			if($contar>0){
-				$loop = $result->fetchAll();
-				foreach ($loop as $exibir){
-				}
-
-				$fotoDeleta = $exibir['imagem'];
-				$arquivo = "../upload/postagens/" .$fotoDeleta;
-
-
-				// exclui o registo
-				$seleciona = "DELETE from tb_postagens WHERE id=:id_delete";
-				try{
-					$result = $PDO->prepare($seleciona);
-					$result->bindParam('id_delete',$id_delete, PDO::PARAM_INT);
-					$result->execute();
-					$contar = $result->rowCount();
-					if($contar>0){
-						echo '<div class="alert alert-success">
-                      <button type="button" class="close" data-dismiss="alert">×</button>
-                      <strong>Sucesso!</strong> O post foi excluído.
-                </div>';
-					}else{
-						echo '<div class="alert alert-danger">
-                      <button type="button" class="close" data-dismiss="alert">×</button>
-                      <strong>Erro!</strong> Não foi possível excluir o post.
-                </div>';
-					}
-
-					}catch (PDOWException $erro){ echo $erro;}			}
-		}catch (PDOWException $erro){ echo $erro;}
-
-	}
-
-?>
-
-    <div class="widget widget-table action-table">
-        <div class="widget-header"> <i class="icon-th-list"></i>
-            <h3>Últimos Posts</h3>
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <!-- Imports de libs -->
+    <link href="/Blog-Programeiros/libs/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.php">Programeiros</a>
         </div>
-        <div class="widget-content">
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th style="white-space: nowrap;"> Título da Postagem </th>
-                        <th style="white-space: nowrap;"> Data</th>
-                        <th style="white-space: nowrap;"> Usuário</th>
-                        <th> Resumo</th>
-                        <th class="td-actions"> </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-										if(isset($_POST['busca'])) {
-			                $busca = $_POST['busca'];
+        <div id="navbar" class="collapse navbar-collapse navbar-right">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Login</a></li>
+            <li><a href="/Blog-Programeiros/index.php">Voltar ao Site</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+     <form action="#" method="post" style="margin-top:75px;">
+         <h2>Login</h2>
 
-			                $query = "SELECT * FROM tb_postagens WHERE titulo LIKE '%$busca%' OR conteudo LIKE '%$busca%'";
+         <?php if(isset($_GET['success'])) { ?>
 
-				            } else {
-	                		$query = "SELECT * FROM tb_postagens ORDER BY id DESC LIMIT 0,6";
-										}
-                try {
-                    $result = $PDO->prepare($query);
-                    $result->execute();
-                    $contar = $result->rowCount();
-                    if($contar>0) {
-                      while ($postagem = $result->fetch(PDO::FETCH_ASSOC)): ?>
-                      <tr>
-                        <td><?= $postagem["titulo"]; ?></td>
-                        <td style="white-space: nowrap;"><?= date('d/m/Y', strtotime($postagem["data"])); ?></td>
-                        <td><?= $postagem["usuario"]; ?></td>
-                        <td><?= substr ($postagem["conteudo"],0,260); echo "..."; ?></td>
-                        <td class="td-actions"><a href="edita_post.php?id=<?= $postagem["id"]; ?>" class="btn btn-small btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                        <a href="?delete=<?= $postagem["id"]; ?>" onClick='return confirm("Deseja realmente excluir esta postagem?")' class="btn btn-danger btn-small"><i class="fa fa-times" aria-hidden="true"></i></a></td>
-                      </tr>
-                      <?php endwhile;
-                    } else {
-                      echo "<tr>
-                               <td colspan='5' style='text-align:center';> Não há postagens! </td>
-                            </tr>";
-                    }
+         <div class="alert alert-success"><?php echo $_GET['success']; ?></div>
 
-                } catch(PDOException $e) {
-                    echo 'Erro:' . $e;
-                }
-                ?>
+         <?php } ?>
 
-                </tbody>
-            </table>
-	        </div>
-	</div>
-</div>
+         <?php if(isset($_GET['err'])) { ?>
 
-<?php
+         <div class="alert alert-danger"><?php echo $_GET['err']; ?></div>
 
-include('includes/footer.php');
+         <?php } ?>
 
-?>
+         <hr>
+        <div class="form-group">
+          <label for="campo_user">Usuário</label>
+          <input type="text" id="campo_user" name="usuario" class="form-control" placeholder="Usuário" autofocus>
+        </div>
+        <div class="form-group">
+          <label for="campo_pass">Senha</label>
+          <input type="password" name="senha" class="form-control" id="campo_pass" placeholder="Senha">
+        </div>
+        <button type="submit" name="login" class="btn btn-success">Login</button>
+      </form>
+    </div>

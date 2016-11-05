@@ -5,7 +5,7 @@ include('../includes/db.php');
 include('../includes/functions.php');
 
 if(!loggedIn()){
-    header("Location:../login.php?err=" . urlencode("Você precisa estar logado para acessar sua conta!!"));
+    header("Location:index.php?err=" . urlencode("Você precisa estar logado para acessar sua conta!!"));
     exit();
 }
 
@@ -75,7 +75,7 @@ if($count=1) {
   <div class="navbar navbar submenu" role="banner">
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="index.php">Início</a></li>
+        <li><a href="admin_page.php">Início</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Postagens <span class="caret"></span></a>
           <ul class="dropdown-menu">
