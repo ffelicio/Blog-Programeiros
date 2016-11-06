@@ -2,12 +2,15 @@
 
 define('TITLE','Post Único');
 
-include('includes/navbar.php');
+include('../includes/config.php');
+include('../includes/db.php');
+
+include('../includes/navbar.php');
 
 if(isset($_GET['id'])) {
   $id = $_GET['id'];
 } else {
-  echo "<script>location.href='index.php'</script>";
+  echo "<script>location.href='/Blog-Programeiros/index.php'</script>";
 }
 
 $sql = "SELECT * FROM tb_postagens WHERE id=:id";
@@ -52,7 +55,7 @@ $sqlUser = "SELECT * FROM login WHERE usuario=:usuario";
   <div class="col-md-8">
     <div class="thumbnail">
       <h1 class="text-center main-title"><?php echo $titulo; ?></h1>
-      <img src="upload/postagens/<?php echo $imagem; ?>" alt="">
+      <img src="../upload/postagens/<?php echo $imagem; ?>" alt="">
       <div class="caption">
 
         <p><?php echo $conteudo; ?></p>
@@ -64,7 +67,7 @@ $sqlUser = "SELECT * FROM login WHERE usuario=:usuario";
       <div class="alert alert-usuario autor">
         <div class="row">
           <div class="col-md-2">
-            <img src="upload/users/<?php echo $thumb; ?>" alt="<?php echo $nome; ?>" class="img-usuario">
+            <img src="../upload/users/<?php echo $thumb; ?>" alt="<?php echo $nome; ?>" class="img-usuario">
           </div>
           <div class="col-md-8">
             <div class="texto-user">

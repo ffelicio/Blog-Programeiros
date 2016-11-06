@@ -68,6 +68,7 @@ include('includes/navbar.php');
             <thead>
               <tr>
                 <th style="white-space: nowrap;"> Título da Postagem </th>
+                <th style="white-space: nowrap;"> Categoria </th>
                 <th style="white-space: nowrap;"> Data</th>
                 <th style="white-space: nowrap;"> Usuário</th>
                 <th> Resumo</th>
@@ -122,6 +123,7 @@ include('includes/navbar.php');
                     while ($postagem = $result->fetch(PDO::FETCH_ASSOC)): ?>
                     <tr>
                       <td > <?= $postagem["titulo"]; ?> </td>
+                      <td > <?= $postagem["categoria"]; ?> </td>
                       <td style="white-space: nowrap;"> <?= date('d/m/Y', strtotime($postagem["data"])); ?></td>
                       <td > <?= $postagem["usuario"]; ?> </td>
                       <td> <?= substr ($postagem["conteudo"],0,260); echo "..."; ?> </td>

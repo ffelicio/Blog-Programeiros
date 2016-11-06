@@ -29,11 +29,11 @@ $stmt->execute();
 
       <div class='col-md-6'>
           <div class='thumbnail'>
-            <a href='post.php?id=<?php echo $posts['id']; ?>'><h3 class="titulo-thumb"><?php echo $posts['titulo']; ?></h3>
+            <a href='/Blog-Programeiros/pages/post.php?id=<?php echo $posts['id']; ?>'><h3 class="titulo-thumb"><?php echo $posts['titulo']; ?></h3>
             <img src='upload/postagens/<?php echo $posts['imagem'] ?>' alt=''></a>
             <div class='caption'>
               <p><?php echo $conteudo; ?>...</p><br>
-              <p><a href='post.php?id=<?php echo $posts['id']; ?>' class='btn btn-primary pull-right btn-mais' role='button'>Ler Mais</a></p>
+              <p><a href='/Blog-Programeiros/pages/post.php?id=<?php echo $posts['id']; ?>' class='btn btn-primary pull-right btn-mais' role='button'>Ler Mais</a></p>
             </div>
           </div>
         </div>
