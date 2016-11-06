@@ -58,6 +58,7 @@ if($count=1) {
               </div>
             </form>
             </li>
+            <li><a onclick="showSite()">Visualizar Site</a></li>
             <li><a href="logout.php">Sair</a></li>
           </ul>
         </div>
@@ -95,3 +96,8 @@ if($count=1) {
     </div>
   </div>
 </nav>
+<script type="text/javascript">
+  function showSite() {
+    window.open("../index.php");
+  }
+</script>
