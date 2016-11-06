@@ -137,7 +137,6 @@ include('includes/navbar.php');
                         <label for="imagem">Imagem para o Post:</label>
                             <input type="file" class="form-control" id="imagem" name="img[]">
                     </div>
-                    <!-- /control-group -->
 
                     <div class="form-group">
                         <label for="categoria">Categoria:</label>
