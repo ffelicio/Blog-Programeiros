@@ -80,7 +80,7 @@ $sqlUser = "SELECT * FROM login WHERE usuario=:usuario";
     <br>
     <hr>
     <br>
-    <div id="disqus_thread"></div>
+    <div id="disqus_thread"></div><br><br><br>
     <script>
         /**
          *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.

@@ -2,9 +2,9 @@
 
     <div class="busca">
       <h3>Faça sua busca pelo site!</h3>
-      <form>
+      <form action="index.php" method="POST">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Busca..." />
+          <input type="text" class="form-control" placeholder="Busca..." name="s" />
         </div>
       </form>
     </div>

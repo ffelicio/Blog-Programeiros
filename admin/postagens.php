@@ -106,7 +106,7 @@ include('includes/navbar.php');
             if(isset($_POST['busca'])) {
                 $busca = $_POST['busca'];
 
-                $query = "SELECT * FROM tb_postagens WHERE TITULO LIKE '%$busca%' OR conteudo LIKE '%$busca%' ORDER BY id DESC LIMIT $inicio, $quantidade";
+                $query = "SELECT * FROM tb_postagens WHERE titulo LIKE '%$busca%' OR conteudo LIKE '%$busca%' ORDER BY id DESC LIMIT $inicio, $quantidade";
 
             } else {
 
