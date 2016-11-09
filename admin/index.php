@@ -43,55 +43,41 @@ if(isset($_POST['login'])){
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login</title>
+    <title>Login - Admin</title>
     <!-- Imports de libs -->
+    <link rel="stylesheet" type="text/css" href="../assets/css/admin.css">
     <link href="/Blog-Programeiros/libs/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="index.php">Programeiros</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse navbar-right">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Login</a></li>
-            <li><a href="/Blog-Programeiros/index.php">Voltar ao Site</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
     <div class="container">
-     <form action="#" method="post" style="margin-top:75px;">
-         <h2>Login</h2>
+        <div class="card card-container">
+        <h2 class="text-title">Programeiros</h2>
+            <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+            <?php if(isset($_GET['success'])) { ?>
 
-         <?php if(isset($_GET['success'])) { ?>
+            <div class="alert alert-success"><?php echo $_GET['success']; ?></div>
 
-         <div class="alert alert-success"><?php echo $_GET['success']; ?></div>
+            <?php } ?>
 
-         <?php } ?>
-
-         <?php if(isset($_GET['err'])) { ?>
+            <?php if(isset($_GET['err'])) { ?>
 
          <div class="alert alert-danger"><?php echo $_GET['err']; ?></div>
 
          <?php } ?>
-
-         <hr>
-        <div class="form-group">
-          <label for="campo_user">Usuário</label>
-          <input type="text" id="campo_user" name="usuario" class="form-control" placeholder="Usuário" autofocus>
-        </div>
-        <div class="form-group">
-          <label for="campo_pass">Senha</label>
-          <input type="password" name="senha" class="form-control" id="campo_pass" placeholder="Senha">
-        </div>
-        <button type="submit" name="login" class="btn btn-success">Login</button>
-      </form>
-    </div>
+            <p id="profile-name" class="profile-name-card"></p>
+            <form class="form-signin" method="post" action="#">
+                <span id="reauth-email" class="reauth-email"></span>
+                <input type="text" id="campo_user" name="usuario" class="form-control" placeholder="Usuario" required autofocus>
+                <input type="password" name="senha" id="campo_pass" class="form-control" placeholder="Senha" required>
+                <div id="remember" class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Lembrar-me
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" name="login">Entrar</button>
+            </form><!-- /form -->
+            <a href="#" class="forgot-password">
+                Esqueceu sua senha?
+            </a>
+        </div><!-- /card-container -->
+    </div><!-- /container -->
