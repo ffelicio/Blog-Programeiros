@@ -67,7 +67,7 @@
 
                 //REQUISITOS
                 $permite 	= array('image/jpeg', 'image/png');
-                $maxSize	= 1024 * 1024 * 1;
+                $maxSize	= 480 * 480 * 1;
 
                 //MENSAGENS
                 $msg		= array();

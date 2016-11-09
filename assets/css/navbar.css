@@ -22,18 +22,21 @@ nav.navbar-findcond a:hover{
 	border-bottom: 3px solid #fff;
 	padding-bottom: 2px;
 	transition: 0.10s;
-	color:#fff; 
+	color: #fff; 
 	background-color: #455A64;
 	}
 nav.navbar-findcond li.divider { 
 	background: #607D8B; 
 	}
 /*Toogle Responsive*/	
-nav.navbar-findcond button.navbar-toggle { background: #f14444; border-radius: 2px; }
+nav.navbar-findcond button.navbar-toggle { background: #263238; border-radius: 2px; }
 nav.navbar-findcond button.navbar-toggle:hover { background: #999; }
 nav.navbar-findcond button.navbar-toggle > span.icon-bar { background: #fff; }
 nav.navbar-findcond ul.dropdown-menu { border: 0; background: #fff; border-radius: 4px; margin: 4px 0; box-shadow: 0 0 4px 0 #ccc; }
 nav.navbar-findcond ul.dropdown-menu > li > a { color: #444; }
-nav.navbar-findcond ul.dropdown-menu > li > a:hover { background: #f14444; color: #fff; }
+nav.navbar-findcond ul.dropdown-menu > li > a:hover { background: #365f96; color: #fff; }
 nav.navbar-findcond span.badge { background: #f14444; font-weight: normal; font-size: 11px; margin: 0 4px; }
 nav.navbar-findcond span.badge.new { background: rgba(255, 0, 0, 0.8); color: #fff; }
+.open>a:hover{
+	background-color: red;
+}

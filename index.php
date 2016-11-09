@@ -1,14 +1,13 @@
 <?php
 
-@define(TITLE, "Programeiros");
+@define(TITLE, "Programeiros | Blog");
 
 include('includes/config.php');
 include('includes/db.php');
-
 include('includes/navbar.php');
 
 ?>
-<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<link rel="stylesheet" type="text/css" href="assets/css/">
 <section id="blog" class="container posts" style="margin-top:100px;>
 
 <div class="row">

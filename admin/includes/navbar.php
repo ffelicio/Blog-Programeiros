@@ -39,30 +39,36 @@ if($count=1) {
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link href="../libs/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="../libs/font-awesome-4.7.0/css/font-awesome.min.css">
-<link href="../assets/css/style.css" rel="stylesheet">
+<link href="../assets/css/admin_navbar.css" rel="stylesheet">
 </head>
 <body>
   <header>
-    <nav class="navbar navbar-inverse" role="banner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span> </a>
-            <a class="navbar-brand" href="index.php">Programeiros</a>
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-              <form action="#" method="post" enctype="multipart/form-data" class="navbar-form navbar-right">
-              <div class="form-group">
-                <input type="text" class="form-control" name="busca" placeholder="Pesquisar...">
-              </div>
-            </form>
-            </li>
-            <li><a onclick="showSite()">Visualizar Site</a></li>
-            <li><a href="logout.php">Sair</a></li>
-          </ul>
-        </div>
-    </nav>
+    <div class="menu">
+    <div class="container-fluid">
+    <div class="navbar-header">
+      <a href="#">Programeiros</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="logout.php" ><span class="glyphicon glyphicon-off"></span> Sair</a></li>
+      </ul>
+      <div class="dropdown">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="" ><span class="glyphicon glyphicon-list-alt"></span> Posts</a></li>
+            <ul class="nav navbar-nav navbar-right">
+            <li><a href="" ><span class="glyphicon glyphicon-bell"></span> Visualizar Site</a></li>
+             </ul>
+        </ul>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+          <li><a href="" ><span class="glyphicon glyphicon-flash"></span> Vagas</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <li><a href="" ><span class="glyphicon glyphicon-user"></span> Usuarios</a></li>
+      </ul>  
+    </div>
+  </div>
+</div>
 </header>
 
     <div class="container">
