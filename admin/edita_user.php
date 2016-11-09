@@ -20,7 +20,7 @@
                 $idPost = $mostra['id'];
                 $nome = $mostra['nome'];
                 $email = $mostra['email'];
-                $usuario = $mostra['usuario'];
+                $user = $mostra['usuario'];
             }
         } else {
             echo '<div class="alert alert-danger">
@@ -50,7 +50,7 @@
                 if(isset($_POST['atualiza'])) {
                     $nome = trim(strip_tags($_POST['nome']));
                     $email = trim(strip_tags($_POST['email']));
-                    $usuario = trim(strip_tags($_POST['usuario']));
+                    $user = trim(strip_tags($_POST['usuario']));
                     $senha = trim(strip_tags(md5(strrev($_POST['senha']))));
                     $rep_senha = trim(strip_tags(md5(strrev($_POST['rep_senha']))));
 
@@ -67,8 +67,8 @@
                         $result = $PDO->prepare($update);
                         $result->bindParam(':nome',$nome, PDO::PARAM_STR);
                         $result->bindParam(':email',$email, PDO::PARAM_STR);
-                        $result->bindParam(':usuario',$usuario, PDO::PARAM_STR);
-                        $result->bindParam(':senha',$senha, PDO::PARAM_INT);
+                        $result->bindParam(':usuario',$user, PDO::PARAM_STR);
+                        $result->bindParam(':senha',$senha, PDO::PARAM_STR);
                         $result->bindParam(':id',$id, PDO::PARAM_INT);
                         $result->execute();
                         $contar = $result->rowCount();
@@ -111,7 +111,7 @@
 
                             <div class="form-group">
                               <label for="usuario">Usuário:</label>
-                                <input type="text" class="form-control" id="usuario" name="usuario"  placeholder="Username" value="<?php echo $usuario; ?>">
+                                <input type="text" class="form-control" id="usuario" name="usuario"  placeholder="Username" value="<?php echo $user; ?>">
                             </div>
 
                             <div class="form-group">

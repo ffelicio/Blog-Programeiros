@@ -15,7 +15,7 @@
                 if(isset($_POST['cadastrar'])) {
                     $nome = trim(strip_tags($_POST['nome']));
                     $email = trim(strip_tags($_POST['email']));
-                    $usuario = trim(strip_tags($_POST['usuario']));
+                    $user = trim(strip_tags($_POST['usuario']));
                     $descricao = trim(strip_tags($_POST['descricao']));
                     $senha = trim(strip_tags(md5(strrev($_POST['senha']))));
                     $rep_senha = trim(strip_tags(md5(strrev($_POST['rep_senha']))));
@@ -34,7 +34,7 @@
 
                     try {
                             $resultado = $PDO->prepare($consulta);
-                            $resultado->bindParam(':usuario',$usuario, PDO::PARAM_STR);
+                            $resultado->bindParam(':usuario',$user, PDO::PARAM_STR);
                             $resultado->execute();
                             $contar = $resultado->rowCount();
                             if($contar>0) {
@@ -103,10 +103,10 @@
                                               $result = $PDO->prepare($insert);
                                               $result->bindParam(':nome',$nome, PDO::PARAM_STR);
                                               $result->bindParam(':email',$email, PDO::PARAM_STR);
-                                              $result->bindParam(':usuario',$usuario, PDO::PARAM_STR);
+                                              $result->bindParam(':usuario',$user, PDO::PARAM_STR);
                                               $result->bindParam(':thumb',$novoNome, PDO::PARAM_STR);
                                               $result->bindParam(':descricao',$descricao, PDO::PARAM_STR);
-                                              $result->bindParam(':senha',$senha, PDO::PARAM_INT);
+                                              $result->bindParam(':senha',$senha, PDO::PARAM_STR);
                                               $result->bindParam(':data',$data, PDO::PARAM_STR);
                                               $result->execute();
                                               $contar = $result->rowCount();

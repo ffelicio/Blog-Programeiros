@@ -36,6 +36,7 @@
             <li><a href="/Blog-Programeiros/pages/categoria.php?c=ruby">Ruby</a></li>
           </ul>
         </li>
+        <li><a href="/Blog-Programeiros/pages/vagas.php">Vagas</a></li>
         <li><a href="/Blog-Programeiros/pages/contato.php">Contato</a></li>
       </ul>
     </div>

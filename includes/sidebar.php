@@ -11,7 +11,7 @@
 
     <div class="telegram">
       <h3>Siga-nos no Telegram...</h3>
-      <a href="https://web.telegram.org/#/im?p=@programeiros" target="_blank"><img class="img-responsive" src="/Blog-Programeiros/assets/img/telegram.jpg" alt="" /></a>
+      <a href="https://www.telegram.me/programeiros" target="_blank"><img class="img-responsive" src="/Blog-Programeiros/assets/img/telegram.jpg" alt="" /></a>
     </div>
 
     <br>

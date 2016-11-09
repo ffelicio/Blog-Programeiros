@@ -130,22 +130,22 @@ include('includes/navbar.php');
 
                     <div class="form-group">
                         <label for="titulo">Titulo do Post:</label>
-                            <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo da Postagem">
+                        <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo da Postagem">
                     </div>
 
                     <div class="form-group">
                         <label for="imagem">Imagem para o Post:</label>
-                            <input type="file" class="form-control" id="imagem" name="img[]">
+                        <input type="file" class="form-control" id="imagem" name="img[]">
                     </div>
 
                     <div class="form-group">
                         <label for="categoria">Categoria:</label>
-                            <input type="text" class="form-control" id="categoria" name="categoria">
+                        <input type="text" class="form-control" id="categoria" name="categoria">
                     </div>
 
                     <div class="form-group">
                         <label for="conteudo">Conteúdo do Post:</label>
-                            <textarea class="form-control" id="conteudo" name="conteudo" rows="8" placeholder="Conteúdo da Postagem"></textarea>
+                        <textarea class="form-control" id="conteudo" name="conteudo" rows="8"></textarea>
                     </div>
 
                     <div class="form-actions">
@@ -161,7 +161,7 @@ include('includes/navbar.php');
 </div>
 </div>
 
-<script src="../js/nicEdit.js"></script>
+<script src="../assets/js/nicEdit.js"></script>
 <script type="text/javascript">
     bkLib.onDomLoaded(function () {
         nicEditors.allTextAreas()

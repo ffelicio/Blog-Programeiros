@@ -91,6 +91,13 @@ if($count=1) {
             <li><a href="cadastra_user.php">Cadastrar</a></li>
           </ul>
         </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Vagas <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="vagas.php">Visualizar</a></li>
+            <li><a href="cadastra_vaga.php">Cadastrar</a></li>
+          </ul>
+        </li>
       </ul>
     </div>
     </div>
