@@ -40,7 +40,7 @@
           <div class="widget widget-table action-table">
             	<div class="widget-header">
                     <i class="icon-file"></i>
-                    <h3>Edita Postagem</h3>
+                    <h3>Edita Usuário</h3>
                 </div> <!-- /widget-header -->
 
                 <div class="widget-content">

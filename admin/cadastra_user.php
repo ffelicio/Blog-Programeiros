@@ -226,7 +226,7 @@
                             <div class="form-group">
                                 <button type="submit" name="cadastrar" class="btn btn-primary">Incluir Usuário</button>
                                 <button type="reset" class="btn btn-danger">Cancelar</button>
-                            </div> <!-- /form-actions -->
+                            </div>
 
                         </fieldset>
                     </form>
