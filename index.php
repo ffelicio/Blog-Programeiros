@@ -111,45 +111,46 @@ try {
 
 ?>
 
-</div>
-<nav aria-label="...">
-  <ul class="pagination">
-    <li><a href="index.php?pg=1">Primeira Página</a></li>
+  <div class='col-md-12'>
+    <nav aria-label="...">
+      <ul class="pager">
+        <li><a href="index.php?pg=1">Primeira Página</a></li>
 
 
-  <!-- PAGINACAO */ -->
+      <!-- PAGINACAO */ -->
 
-  <?php
+      <?php
 
-    if(isset($_GET['pg'])) {
-        $num_pg = $_GET['pg'];
-    }
+        if(isset($_GET['pg'])) {
+            $num_pg = $_GET['pg'];
+        }
 
-    for($i = $pg-$links; $i <= $pg-1; $i++) {
-        if($i<=0) {} else {
+        for($i = $pg-$links; $i <= $pg-1; $i++) {
+            if($i<=0) {} else {
+                ?>
+                <li><a href="index.php?pg=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+
+        <?php } } ?>
+
+        <li><a href="#" class="active<?php echo $i; ?>"><?php echo $pg; ?></a></li>
+
+        <?php
+        for($i = $pg+1; $i <= $pg+$links; $i++) {
+        if($i>$paginas) { }
+        else {
             ?>
-            <li><a href="index.php?pg=<?php echo $i; ?>"><?php echo $i; ?></a></li>
 
-    <?php } } ?>
+            <li><a href="index.php?pg=<?php echo $i; ?>" class="active<?php echo $i; ?>"><?php echo $i; ?></a></li>
 
-    <li><a href="#" class="active<?php echo $i; ?>"><?php echo $pg; ?></a></li>
+        <?php } } ?>
 
-    <?php
-    for($i = $pg+1; $i <= $pg+$links; $i++) {
-    if($i>$paginas) { }
-    else {
-        ?>
+        <li><a href="index.php?pg=<?php echo $paginas; ?>">Última Página</a></li>
+        </ul>
+      </nav>
 
-        <li><a href="index.php?pg=<?php echo $i; ?>" class="active<?php echo $i; ?>"><?php echo $i; ?></a></li>
-
-    <?php } } ?>
-
-    <li><a href="index.php?pg=<?php echo $paginas; ?>">Última Página</a></li>
-    </ul>
-  </nav>
-
-  <?php } ?>
-
+      <?php } ?>
+    </div>
+      </div>
     </div>
 
   </div>
