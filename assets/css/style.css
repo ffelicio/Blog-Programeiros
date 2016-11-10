@@ -25,7 +25,7 @@
 .btn-mais {
 color: #fff;
 background-color: #607D8B;
-margin-top: -20px;
+margin-top: 0px;
 border-bottom:2px solid #607D8B;
 font-family: 'Oswald', sans-serif;
 }
@@ -40,6 +40,7 @@ h3.titulo-thumb {
 }
 .thumbnail {
 	padding:10px;
+	height: 400px;
 }
 .thumbnail > a {
 	color: #000;

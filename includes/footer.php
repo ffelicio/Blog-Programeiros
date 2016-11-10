@@ -1,5 +1,5 @@
 <footer class="footer">
-<div class="navbar navbar-default  background">
+<div class="navbar navbar-default navbar-fixed-bottom background">
     <div class="container ">
       <p class="pull-left text-p"> Todos os direitos reservados a Programeiros © 2016
       </p>
