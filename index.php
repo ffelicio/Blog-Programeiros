@@ -72,8 +72,6 @@ include('includes/navbar.php');
         echo "<h3>Não há posts cadastrados!</h3>";
     } ?>
 
-</nav>
-
 <?php
 
 if(isset($_POST['s'])) {

@@ -21,6 +21,7 @@
                 $idPost = $mostra['id'];
                 $titulo = $mostra['titulo'];
                 $conteudo = $mostra['conteudo'];
+                $categoria = $mostra['categoria'];
                 $imagem = $mostra['imagem'];
             }
         } else {
@@ -53,10 +54,9 @@
                 if(isset($_POST['atualiza'])) {
                     $titulo = trim(strip_tags($_POST['titulo']));
                     $conteudo = $_POST['conteudo'];
+                    $categoria = trim(strip_tags($_POST['categoria']));
 
                     if(!empty($_FILES['img']['name'])) {
-
-
 
                     //INFO IMAGEM
                 $file 		= $_FILES['img'];
@@ -79,17 +79,16 @@
                 );
 
                 if($numFile <= 0){
-                   /* echo '<div class="alert alert-danger">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                Selecione uma imagem para a postagem!
-                            </div>'; */
-                }
-                else if($numFile > 1){
+                /*  echo '<div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            Selecione uma imagem para a postagem!
+                        </div>'; */
+                } elseif ($numFile > 1) {
                     echo '<div class="alert alert-danger">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                 Você ultrapassou o limite de upload. Selecione apenas 1 foto e tente novamente!
                             </div>';
-                }else{
+                } else {
                     for($i = 0; $i < $numFile; $i++){
                         $name 	= $file['name'][$i];
                         $type	= $file['type'][$i];
@@ -127,12 +126,13 @@
 
                             }
 
-                                $update = 'UPDATE tb_postagens SET titulo=:titulo, conteudo=:conteudo, imagem=:imagem WHERE id=:id';
+                                $update = 'UPDATE tb_postagens SET titulo=:titulo, conteudo=:conteudo, categoria=:categoria, imagem=:imagem WHERE id=:id';
 
                             try {
                                 $result = $PDO->prepare($update);
                                 $result->bindParam(':titulo',$titulo, PDO::PARAM_STR);
                                 $result->bindParam(':conteudo',$conteudo, PDO::PARAM_STR);
+                                $result->bindParam(':categoria',$categoria, PDO::PARAM_STR);
                                 $result->bindParam(':imagem',$novoNome, PDO::PARAM_STR);
                                 $result->bindParam(':id',$id, PDO::PARAM_INT);
                                 $result->execute();
@@ -168,18 +168,23 @@
 
                             <div class="form-group">
                                 <label for="titulo">Titulo do Post:</label>
-                                    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo da Postagem" value="<?php echo $titulo; ?>">
+                                <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo da Postagem" value="<?php echo $titulo; ?>">
                             </div>
 
                             <div class="form-group">
                                 <label for="imagem">Imagem para o Post:</label>
-                                    <input type="file" class="form-control" id="imagem" name="img[]" >
-                                    <img src="../upload/postagens/<?php echo $novoNome; ?>" alt="" style="height:40px;">
+                                  <input type="file" class="form-control" id="imagem" name="img[]" >
+                                  <img src="../upload/postagens/<?php echo $novoNome; ?>" alt="" style="height:40px;">
                             </div>
 
                             <div class="form-group">
                                 <label for="conteudo">Conteúdo do Post:</label>
-                                    <textarea class="form-control" id="conteudo" name="conteudo" rows="8"><?php echo $conteudo; ?></textarea>
+                                <textarea class="form-control" id="conteudo" name="conteudo" rows="8"><?php echo $conteudo; ?></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="categoria">Imagem para o Post:</label>
+                                  <input type="text" class="form-control" id="categoria" name="categoria" value="<?php echo $categoria; ?>">
                             </div>
 
                             <div class="form-group">
