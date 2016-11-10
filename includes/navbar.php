@@ -24,7 +24,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/Blog-Programeiros/index.php"><h1 class="brand-text">Programeiros Blog</h1></a>
+      <a href="/Blog-Programeiros/index.php"><h1 class="brand-text">Programeiros 2IN1</h1></a>
     </div>
     <div class="collapse navbar-collapse" id="navbar">
       <ul class="nav navbar-nav navbar-right">
