@@ -62,8 +62,6 @@ include('includes/navbar.php');
     </div>
   </div>
 
-
-
   <?php endwhile;
 
   } else {

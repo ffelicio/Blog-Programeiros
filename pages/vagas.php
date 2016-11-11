@@ -14,9 +14,7 @@ $contar = $stmt->rowCount();
 
 ?>
 <link rel="stylesheet" type="text/css" href="../assets/css/vagas.css">
-<section id="blog" class="container posts" style="margin-top:100px;>
 
-<div class="row">
   <div class="col-md-8">
     <h1 class="title-main">Área de Vagas</h1>
 
@@ -42,8 +40,6 @@ $contar = $stmt->rowCount();
       <h3>Ainda não há vagas cadastradas!</h3>
 
     <?php endif; ?>
-
-
 
   </div>
 </div>

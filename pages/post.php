@@ -7,31 +7,35 @@ include('../includes/db.php');
 
 include('../includes/navbar.php');
 
-if(isset($_GET['id'])) {
-  $id = $_GET['id'];
-} else {
-  echo "<script>location.href='/Blog-Programeiros/index.php'</script>";
-}
+  if(isset($_GET['id'])) {
+    
+    $id = $_GET['id'];
 
-$sql = "SELECT * FROM tb_postagens WHERE id=:id";
+  } else {
 
-try {
-$stmt = $PDO->prepare($sql);
-$stmt->bindParam(':id',$id, PDO::PARAM_INT);
-$stmt->execute();
-} catch(PDOException $erro) {
-    echo $erro;
-}
+    echo "<script>location.href='/Blog-Programeiros/index.php'</script>";
 
-while ($postagem = $stmt->fetch(PDO::FETCH_ASSOC)) {
-       $id = $postagem["id"];
-       $titulo = $postagem["titulo"];
-       $imagem = $postagem["imagem"];
-       $usuario = $postagem["usuario"];
-       $conteudo = $postagem["conteudo"];
-    }
+  }
 
-$sqlUser = "SELECT * FROM login WHERE usuario=:usuario";
+  $sql = "SELECT * FROM tb_postagens WHERE id=:id";
+
+  try {
+  $stmt = $PDO->prepare($sql);
+  $stmt->bindParam(':id',$id, PDO::PARAM_INT);
+  $stmt->execute();
+  } catch(PDOException $erro) {
+      echo $erro;
+  }
+
+  while ($postagem = $stmt->fetch(PDO::FETCH_ASSOC)) {
+         $id = $postagem["id"];
+         $titulo = $postagem["titulo"];
+         $imagem = $postagem["imagem"];
+         $usuario = $postagem["usuario"];
+         $conteudo = $postagem["conteudo"];
+      }
+
+  $sqlUser = "SELECT * FROM login WHERE usuario=:usuario";
 
       try {
       $stmt2 = $PDO->prepare($sqlUser);
@@ -47,34 +51,32 @@ $sqlUser = "SELECT * FROM login WHERE usuario=:usuario";
              $thumb = $user["thumb"];
     }
 
-
 ?>
 
   <div class="col-md-8">
-      <h1 class="text-center main-title"><?php echo $titulo; ?></h1><br>
-      <img src="../upload/postagens/<?php echo $imagem; ?>" alt="" class="img-responsive">
+    <h1 class="text-center main-title"><?php echo $titulo; ?></h1><br>
+    <img src="../upload/postagens/<?php echo $imagem; ?>" alt="" class="img-responsive">
 
-      <br>
+    <br>
 
-      <p><?php echo $conteudo; ?></p>
+    <p><?php echo $conteudo; ?></p>
 
-    
     <br>
     <hr>
     <br>
-      <div class="alert alert-usuario autor">
-        <div class="row">
-          <div class="col-md-2">
-            <img src="../upload/users/<?php echo $thumb; ?>" alt="<?php echo $nome; ?>" class="img-usuario">
-          </div>
-          <div class="col-md-8">
-            <div class="texto-user">
-              <h3>por <?php echo $nome; ?></h3>
-              <p><?php echo $descricao; ?></p>
-            </div>
+    <div class="alert alert-usuario autor">
+      <div class="row">
+        <div class="col-md-2">
+          <img src="../upload/users/<?php echo $thumb; ?>" alt="<?php echo $nome; ?>" class="img-usuario">
+        </div>
+        <div class="col-md-8">
+          <div class="texto-user">
+            <h3>por <?php echo $nome; ?></h3>
+            <p><?php echo $descricao; ?></p>
           </div>
         </div>
       </div>
+    </div>
 
     <br>
     <hr>
@@ -100,7 +102,6 @@ $sqlUser = "SELECT * FROM login WHERE usuario=:usuario";
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
-
 
 <?php
 
