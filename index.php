@@ -7,84 +7,80 @@ include('includes/db.php');
 include('includes/navbar.php');
 
 ?>
-<link rel="stylesheet" type="text/css" href="assets/css/">
-<section id="blog" class="container posts" style="margin-top:100px;>
 
-<div class="row">
-  <div class="col-md-8">
-    <h1 class="title-main">Área de Postagens</h1>
+<div class="col-md-8">
+  <h1 class="title-main">Área de Postagens</h1>
+    <div class="row">
+  <?php
 
-    <?php
+  if(!empty($_GET['pg'])) {
+    $pg = $_GET['pg'];
+    if(!is_numeric($pg)) {
+    echo "<script>location.href='index.php</script>";
+    }
+  }
 
-    if(!empty($_GET['pg'])) {
+  if(isset($pg)) {
       $pg = $_GET['pg'];
-      if(!is_numeric($pg)) {
-      echo "<script>location.href='index.php</script>";
-      }
-    }
+  } else {
+      $pg = 1;
+  }
 
-    if(isset($pg)) {
-        $pg = $_GET['pg'];
-    } else {
-        $pg = 1;
-    }
+  $quantidade = 6; // quantidade de resultados por página
 
-    $quantidade = 6; // quantidade de resultados por página
+  $inicio = ($pg * $quantidade) - $quantidade;
 
-    $inicio = ($pg * $quantidade) - $quantidade;
+  if(isset($_POST['s'])) {
+    $busca = $_POST['s'];
+    $query = "SELECT * FROM tb_postagens WHERE titulo LIKE '%$busca%' OR conteudo LIKE '%$busca%' OR categoria LIKE '%$busca%' ORDER BY id";
+  } else {
+    $query = "SELECT * FROM tb_postagens ORDER BY id DESC LIMIT $inicio, $quantidade";
+  }
 
-    if(isset($_POST['s'])) {
-      $busca = $_POST['s'];
-      $query = "SELECT * FROM tb_postagens WHERE titulo LIKE '%$busca%' OR conteudo LIKE '%$busca%' OR categoria LIKE '%$busca%' ORDER BY id";
-    } else {
-      $query = "SELECT * FROM tb_postagens ORDER BY id DESC LIMIT $inicio, $quantidade";
-    }
+  $contagem = 1;
 
-    $contagem = 1;
+  $stmt = $PDO->prepare($query);
+  $stmt->execute();
+  $contar = $stmt->rowCount();
 
-    $stmt = $PDO->prepare($query);
-    $stmt->execute();
-    $contar = $stmt->rowCount();
+  $conteudo = '';
+  if($contar>0) {
+    while ($posts = $stmt->fetch(PDO::FETCH_ASSOC)):
 
-    $conteudo = '';
-    if($contar>0) {
-      while ($posts = $stmt->fetch(PDO::FETCH_ASSOC)):
+  $conteudo = substr($posts['conteudo'],0,100);
 
-    $conteudo = substr($posts['conteudo'],0,100);
+  ?>
 
-    ?>
-
-      <div class='col-md-6'>
-          <div class='thumbnail'>
-            <a href='/Blog-Programeiros/pages/post.php?id=<?php echo $posts['id']; ?>'><h3 class="titulo-thumb"><?php echo $posts['titulo']; ?></h3>
-            <img src='upload/postagens/<?php echo $posts['imagem'] ?>' alt=''></a>
-            <div class='caption'>
-              <p><?php echo strip_tags($conteudo); ?>...</p><br>
-              <p><a href='/Blog-Programeiros/pages/post.php?id=<?php echo $posts['id']; ?>' class='btn btn-primary pull-right btn-mais' role='button'>Ler Mais</a></p>
-            </div>
-          </div>
-        </div>
+  <div class='col-md-6'>
+    <div class='thumbnail'>
+      <a href='/Blog-Programeiros/pages/post.php?id=<?php echo $posts['id']; ?>'><h3 class="titulo-thumb"><?php echo $posts['titulo']; ?></h3>
+      <img src='upload/postagens/<?php echo $posts['imagem'] ?>' alt=''></a>
+      <div class='caption'>
+        <p><?php echo strip_tags($conteudo); ?>...</p><br>
+        <p><a href='/Blog-Programeiros/pages/post.php?id=<?php echo $posts['id']; ?>' class='btn btn-primary pull-right btn-mais' role='button'>Ler Mais</a></p>
+      </div>
+    </div>
+  </div>
 
 
-    <?php endwhile;
 
-    } else {
-        echo "<h3>Não há posts cadastrados!</h3>";
-    } ?>
+  <?php endwhile;
 
-<?php
+  } else {
+      echo "<h3>Não há posts cadastrados!</h3>";
+  } 
 
-if(isset($_POST['s'])) {
+  if(isset($_POST['s'])) {
     $busca = $_POST['s'];
 
     $sql = "SELECT * FROM tb_postagens WHERE titulo LIKE '%$busca%' OR conteudo LIKE '%$busca%' OR categoria LIKE '%$busca%'";
 
-} else {
+  } else {
 
     $sql = "SELECT * FROM tb_postagens";
-}
+  }
 
-try {
+  try {
     $result = $PDO->prepare($sql);
     $result->execute();
     $totalRegistros = $result->rowCount();
@@ -106,53 +102,55 @@ try {
       $i = '1';
   }
 
-?>
+  ?>
 
-  <div class='col-md-12'>
-    <nav aria-label="...">
-      <ul class="pager">
-        <li><a href="index.php?pg=1">Primeira Página</a></li>
+<div class='col-md-12'>
+  <nav aria-label="...">
+    <ul class="pager">
+      <li><a href="index.php?pg=1">Primeira Página</a></li>
 
 
-      <!-- PAGINACAO */ -->
+    <!-- PAGINACAO */ -->
 
-      <?php
+    <?php
 
-        if(isset($_GET['pg'])) {
-            $num_pg = $_GET['pg'];
-        }
+      if(isset($_GET['pg'])) {
+          $num_pg = $_GET['pg'];
+      }
 
-        for($i = $pg-$links; $i <= $pg-1; $i++) {
-            if($i<=0) {} else {
-                ?>
-                <li><a href="index.php?pg=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+      for($i = $pg-$links; $i <= $pg-1; $i++) {
+          if($i<=0) {} else { ?>
 
-        <?php } } ?>
+              <li><a href="index.php?pg=<?php echo $i; ?>"><?php echo $i; ?></a></li>
 
-        <li><a href="#" class="active<?php echo $i; ?>"><?php echo $pg; ?></a></li>
+    <?php } } ?>
 
-        <?php
-        for($i = $pg+1; $i <= $pg+$links; $i++) {
-        if($i>$paginas) { }
-        else {
-            ?>
+      <li><a href="#" class="active<?php echo $i; ?>"><?php echo $pg; ?></a></li>
 
-            <li><a href="index.php?pg=<?php echo $i; ?>" class="active<?php echo $i; ?>"><?php echo $i; ?></a></li>
+    <?php
 
-        <?php } } ?>
+      for($i = $pg+1; $i <= $pg+$links; $i++) {
 
-        <li><a href="index.php?pg=<?php echo $paginas; ?>">Última Página</a></li>
-        </ul>
-      </nav>
+      if($i>$paginas) { 
 
-      <?php } ?>
-    </div>
-      </div>
-    </div>
+      } else { ?>
+
+          <li><a href="index.php?pg=<?php echo $i; ?>" class="active<?php echo $i; ?>"><?php echo $i; ?></a></li>
+
+      <?php } } ?>
+
+      <li><a href="index.php?pg=<?php echo $paginas; ?>">Última Página</a></li>
+
+      </ul>
+
+    </nav>
+
+    <?php } ?>
 
   </div>
 
 </div>
+
 
 <?php
 

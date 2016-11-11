@@ -49,18 +49,16 @@ $sqlUser = "SELECT * FROM login WHERE usuario=:usuario";
 
 
 ?>
-<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
-<div class="container">
-<div class="post-unico" style="margin-top:100px;">
-  <div class="col-md-8">
-    <div class="thumbnail">
-      <h1 class="text-center main-title"><?php echo $titulo; ?></h1>
-      <img src="../upload/postagens/<?php echo $imagem; ?>" alt="">
-      <div class="caption">
 
-        <p><?php echo $conteudo; ?></p>
-      </div>
-    </div>
+  <div class="col-md-8">
+      <h1 class="text-center main-title"><?php echo $titulo; ?></h1><br>
+      <img src="../upload/postagens/<?php echo $imagem; ?>" alt="" class="img-responsive">
+
+      <br>
+
+      <p><?php echo $conteudo; ?></p>
+
+    
     <br>
     <hr>
     <br>
@@ -77,6 +75,7 @@ $sqlUser = "SELECT * FROM login WHERE usuario=:usuario";
           </div>
         </div>
       </div>
+
     <br>
     <hr>
     <br>
@@ -101,7 +100,7 @@ $sqlUser = "SELECT * FROM login WHERE usuario=:usuario";
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
-</div>
+
 
 <?php
 

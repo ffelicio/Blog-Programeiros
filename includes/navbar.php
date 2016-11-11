@@ -42,3 +42,6 @@
     </div>
   </div>
 </nav>
+
+<section id="blog" class="container posts" style="margin-top:100px;">
+  <div class="row">

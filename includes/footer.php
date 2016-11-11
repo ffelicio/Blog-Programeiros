@@ -1,3 +1,6 @@
+  </div>
+</section>
+
 <footer class="footer">
 <div class="navbar navbar-default navbar-fixed-bottom background">
     <div class="container ">
