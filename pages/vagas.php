@@ -23,17 +23,16 @@ $contar = $stmt->rowCount();
       $conteudo = '';
       while ($vagas = $stmt->fetch(PDO::FETCH_ASSOC)):
 
-      $descricao = substr($vagas['descricao_vaga'],0,600);
+      $descricao = substr($vagas['descricao_vaga'],0,300);
 
       ?>
       <div class="vagas">
         <div class='col-md-12'>
-          <a href='vaga.php?id=<?php echo $posts['id']; ?>'><h3><?php echo $vagas['titulo_vaga']; ?> - <?php echo $vagas['local']; ?></h3></a>
+          <a href='/Blog-Programeiros/pages/vaga.php?id=<?php echo $vagas['id_vaga']; ?>'><h3><?php echo $vagas['titulo_vaga']; ?> - <?php echo $vagas['local']; ?></h3></a>
           <p><?php echo $vagas['divulgador']; ?></p><br>
-          <p><?php echo strip_tags($descricao); ?></p><hr>
-          <button class="btn btn-success">Aplicar Vaga</button>
+          <p><?php echo strip_tags($descricao); ?>...</p><hr>
         </div>
-        
+      </div>
     <?php endwhile;
     else : ?>
 
@@ -42,7 +41,6 @@ $contar = $stmt->rowCount();
     <?php endif; ?>
 
   </div>
-</div>
 <link rel="stylesheet" type="text/css" href="../assets/css/footer.css">
 <?php
 

@@ -13,7 +13,6 @@ if(!isset($_GET['c'])) {
   $sql = "SELECT * FROM tb_postagens WHERE categoria = '$categoria' ORDER BY id DESC LIMIT 6";
 }
 
-
 $stmt = $PDO->prepare($sql);
 $stmt->execute();
 
@@ -42,7 +41,7 @@ $stmt->execute();
     </div>
 
     <?php endwhile; ?>
-    
+
   </div>
 </div>
 <link rel="stylesheet" type="text/css" href="../assets/css/footer.css">

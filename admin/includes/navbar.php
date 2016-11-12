@@ -46,68 +46,46 @@ if($count=1) {
     <div class="menu">
     <div class="container-fluid">
     <div class="navbar-header">
-      <a href="#">Programeiros</a>
+      <a href="/Blog-Programeiros/admin/admin_page.php">Programeiros</a>
     </div>
     <div>
       <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Posts <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="postagens.php">Visualizar</a></li>
+            <li><a href="cadastra_post.php">Cadastrar</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Vagas <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="vagas.php">Visualizar</a></li>
+            <li><a href="cadastra_vaga.php">Cadastrar</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Usuários <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="usuarios.php">Visualizar</a></li>
+            <li><a href="cadastra_user.php">Cadastrar</a></li>
+          </ul>
+        </li>
+        <li><a href="/Blog-Programeiros/" ><span class="glyphicon glyphicon-bell"></span> Visualizar Site</a></li>
         <li><a href="logout.php" ><span class="glyphicon glyphicon-off"></span> Sair</a></li>
       </ul>
-      <div class="dropdown">
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="" ><span class="glyphicon glyphicon-list-alt"></span> Posts</a></li>
-            <ul class="nav navbar-nav navbar-right">
-            <li><a href="" ><span class="glyphicon glyphicon-bell"></span> Visualizar Site</a></li>
-             </ul>
-        </ul>
-      </div>
-      <ul class="nav navbar-nav navbar-right">
-          <li><a href="" ><span class="glyphicon glyphicon-flash"></span> Vagas</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-          <li><a href="" ><span class="glyphicon glyphicon-user"></span> Usuarios</a></li>
-      </ul>  
     </div>
   </div>
 </div>
 </header>
 
     <div class="container">
-      <div class="row">
+      <div class="row"><br>
         <div class="alert alert-info">
           <button type="button" class="close" data-dismiss="alert">×</button>
           <strong>Olá, <?php echo $nomeUsuario; ?></strong>, Seja Bem vindo!
         </div>
 
-<div class="container">
-  <div class="navbar navbar submenu" role="banner">
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="admin_page.php">Início</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Postagens <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="postagens.php">Visualizar</a></li>
-            <li><a href="cadastra_post.php">Cadastrar</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuários <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="usuarios.php">Visualizar</a></li>
-            <li><a href="cadastra_user.php">Cadastrar</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Vagas <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="vagas.php">Visualizar</a></li>
-            <li><a href="cadastra_vaga.php">Cadastrar</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    </div>
-  </div>
 </nav>
 <script type="text/javascript">
   function showSite() {

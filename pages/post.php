@@ -8,7 +8,7 @@ include('../includes/db.php');
 include('../includes/navbar.php');
 
   if(isset($_GET['id'])) {
-    
+
     $id = $_GET['id'];
 
   } else {
@@ -20,36 +20,36 @@ include('../includes/navbar.php');
   $sql = "SELECT * FROM tb_postagens WHERE id=:id";
 
   try {
-  $stmt = $PDO->prepare($sql);
-  $stmt->bindParam(':id',$id, PDO::PARAM_INT);
-  $stmt->execute();
+    $stmt = $PDO->prepare($sql);
+    $stmt->bindParam(':id',$id, PDO::PARAM_INT);
+    $stmt->execute();
   } catch(PDOException $erro) {
-      echo $erro;
+    echo $erro;
   }
 
   while ($postagem = $stmt->fetch(PDO::FETCH_ASSOC)) {
-         $id = $postagem["id"];
-         $titulo = $postagem["titulo"];
-         $imagem = $postagem["imagem"];
-         $usuario = $postagem["usuario"];
-         $conteudo = $postagem["conteudo"];
-      }
+     $id = $postagem["id"];
+     $titulo = $postagem["titulo"];
+     $imagem = $postagem["imagem"];
+     $usuario = $postagem["usuario"];
+     $conteudo = $postagem["conteudo"];
+  }
 
   $sqlUser = "SELECT * FROM login WHERE usuario=:usuario";
 
-      try {
+    try {
       $stmt2 = $PDO->prepare($sqlUser);
       $stmt2->bindParam(':usuario',$usuario, PDO::PARAM_STR);
       $stmt2->execute();
-      } catch(PDOException $erro) {
-          echo $erro;
-      }
-
-      while ($user = $stmt2->fetch(PDO::FETCH_ASSOC)) {
-             $nome = $user["nome"];
-             $descricao = $user["descricao"];
-             $thumb = $user["thumb"];
+    } catch(PDOException $erro) {
+      echo $erro;
     }
+
+    while ($user = $stmt2->fetch(PDO::FETCH_ASSOC)) {
+     $nome = $user["nome"];
+     $descricao = $user["descricao"];
+     $thumb = $user["thumb"];
+  }
 
 ?>
 
@@ -64,6 +64,7 @@ include('../includes/navbar.php');
     <br>
     <hr>
     <br>
+
     <div class="alert alert-usuario autor">
       <div class="row">
         <div class="col-md-2">
