@@ -29,7 +29,7 @@ $contar = $stmt->rowCount();
       <div class="vagas">
         <div class='col-md-12'>
           <a href='/Blog-Programeiros/pages/vaga.php?id=<?php echo $vagas['id_vaga']; ?>'><h3><?php echo $vagas['titulo_vaga']; ?> - <?php echo $vagas['local']; ?></h3></a>
-          <p><?php echo $vagas['divulgador']; ?></p><br>
+          <p><i><?php echo $vagas['divulgador']; ?></i></p>
           <p><?php echo strip_tags($descricao); ?>...</p><hr>
         </div>
       </div>

@@ -141,3 +141,20 @@ body, html {
     font-size: 40px;
     font-weight: bold;
 }
+
+div.alerta {
+    position: absolute;
+    z-index: 9999;
+    color: #fff;
+    width: 100%;
+    padding: 20px;
+    margin-top: 200px;
+}
+
+.alerta-sucesso {
+    background-color: green;
+}
+
+.alerta-erro {
+    background-color: #FF3434;
+}

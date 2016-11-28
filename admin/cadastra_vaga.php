@@ -145,9 +145,21 @@ jQuery("input.telefone")
         nicEditors.allTextAreas()
     });
 </script>
+<script>
+    $('input[type="checkbox"]').click(function() {
 
+      if(this.checked === true) {
+        $("#razao").val("Empresa Confidencial");
+        $("input#razao").attr("disabled", true);
+      } else {
+        $("#razao").val("");
+        $("input#razao").removeAttr("disabled");
+      }
+    });
+  </script>
 <?php
 
 include('includes/footer.php');
 
 ?>
+

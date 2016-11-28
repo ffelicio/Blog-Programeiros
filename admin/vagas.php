@@ -2,34 +2,34 @@
 
   include('includes/navbar.php');
 
-     if(isset($_GET['delete'])) {
-        $id_delete = $_GET['delete'];
+   if(isset($_GET['delete'])) {
+    $id_delete = $_GET['delete'];
 
-        $deleta = "DELETE FROM vagas WHERE id_vaga=:id_delete";
-            try {
-                $result = $PDO->prepare($deleta);
-                $result->bindParam(':id_delete',$id_delete, PDO::PARAM_INT);
-                $result->execute();
-                $contar = $result->rowCount();
-                if($contar>0) {
-                    echo '<div class="span12"><div class="alert alert-success">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
-                            <strong>Vaga excluida com sucesso!</strong>
-                          </div></div>';
-                } else {
-                    echo '<div class="span12"><div class="alert alert-danger">
-                       <button type="button" class="close" data-dismiss="alert">×</button>
-                       <strong>Vaga com este ID não existe ou já foi excluido!</strong>
-                   </div></div>';
-                }
+    $deleta = "DELETE FROM vagas WHERE id_vaga=:id_delete";
+      try {
+        $result = $PDO->prepare($deleta);
+        $result->bindParam(':id_delete',$id_delete, PDO::PARAM_INT);
+        $result->execute();
+        $contar = $result->rowCount();
+        if($contar>0) {
+          echo '<div class="span12"><div class="alert alert-success">
+                  <button type="button" class="close" data-dismiss="alert">×</button>
+                  <strong>Vaga excluida com sucesso!</strong>
+                </div></div>';
+        } else {
+          echo '<div class="span12"><div class="alert alert-danger">
+             <button type="button" class="close" data-dismiss="alert">×</button>
+             <strong>Vaga com este ID não existe ou já foi excluido!</strong>
+         </div></div>';
+        }
 
-                } catch(PDOException $erro) {
-                    echo $erro;
-                }
+        } catch(PDOException $erro) {
+            echo $erro;
+        }
 
-            }
+      }
 
-          ?>
+    ?>
 
     </div>
 
@@ -56,10 +56,10 @@
 
                 if(!empty($_GET['pg'])) {
 
-                    $pg = $_GET['pg'];
-                    if(!is_numeric($pg)) {
-                    echo "<script>location.href='vagas.php</script>";
-                    }
+                  $pg = $_GET['pg'];
+                  if(!is_numeric($pg)) {
+                  echo "<script>location.href='vagas.php</script>";
+                  }
                 }
 
                 if(isset($pg)) {
@@ -74,11 +74,21 @@
                 if(isset($_POST['busca'])) {
                   $busca = $_POST['busca'];
 
-                  $query = "SELECT * FROM vagas WHERE titulo_vaga LIKE '%$busca%' OR descricao_vaga LIKE '%$busca%'";
+                  if($nivel == 9) {
+                    $query = "SELECT * FROM vagas WHERE titulo_vaga LIKE '%$busca%' OR descricao_vaga LIKE '%$busca%' AND WHERE divulgador='$usuario'";
+                  } else {
+                    $query = "SELECT * FROM vagas WHERE titulo_vaga LIKE '%$busca%' OR descricao_vaga LIKE '%$busca%' AND WHERE divulgador='$usuario'";
+                  }
+                  
 
                 } else {
 
-                $query = "SELECT * FROM vagas ORDER BY id_vaga DESC LIMIT $inicio, $quantidade";
+                  if($nivel == 9) {
+                    $query = "SELECT * FROM vagas WHERE divulgador='$usuario' ORDER BY id_vaga DESC LIMIT $inicio, $quantidade";
+                  } else {
+                    $query = "SELECT * FROM vagas ORDER BY id_vaga DESC LIMIT $inicio, $quantidade";
+                  }
+                
 
               }
                 $contagem = 1;
@@ -88,24 +98,24 @@
                     $result->execute();
                     $contar = $result->rowCount();
                     if($contar>0) {
-                        while ($vaga = $result->fetch(PDO::FETCH_ASSOC)): ?>
-                        <tr>
-                            <td style="white-space: nowrap;"> <?= $vaga["titulo_vaga"]; ?> </td>
-                            <td> <?= substr($vaga["descricao_vaga"],0,200); ?> </td>
-                            <td style="white-space: nowrap;"> <?= $vaga["divulgador"]; ?> </td>
-                            <td style="white-space: nowrap;"> <?= date('d/m/Y', strtotime($vaga["data_inc"])); ?> </td>
-                            <td class="td-actions"><a href="edita_vaga.php?id=<?= $vaga["id_vaga"]; ?>" class="btn btn-small btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                            <a href="vagas.php?pg=<?php echo $pg; ?>&delete=<?= $vaga["id_vaga"]; ?>" onClick='return confirm("Deseja realmente excluir esta vaga?")' class="btn btn-danger btn-small"><i class="fa fa-times" aria-hidden="true"></i></a></td>
-                        </tr>
+                      while ($vaga = $result->fetch(PDO::FETCH_ASSOC)): ?>
+                      <tr>
+                          <td style="white-space: nowrap;"> <?= $vaga["titulo_vaga"]; ?> </td>
+                          <td> <?= substr($vaga["descricao_vaga"],0,200); ?> </td>
+                          <td style="white-space: nowrap;"> <?= $vaga["divulgador"]; ?> </td>
+                          <td style="white-space: nowrap;"> <?= date('d/m/Y', strtotime($vaga["data_inc"])); ?> </td>
+                          <td class="td-actions"><a href="edita_vaga.php?id=<?= $vaga["id_vaga"]; ?>" class="btn btn-small btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                          <a href="vagas.php?pg=<?php echo $pg; ?>&delete=<?= $vaga["id_vaga"]; ?>" onClick='return confirm("Deseja realmente excluir esta vaga?")' class="btn btn-danger btn-small"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+                      </tr>
                    <?php endwhile;
                     } else {
-                        echo "<tr>
-                                 <td colspan='5' style='text-align:center';> Não há vagas cadastradas! </td>
-                              </tr>";
+                      echo "<tr>
+                               <td colspan='5' style='text-align:center';> Não há vagas cadastradas! </td>
+                            </tr>";
                     }
 
                 } catch(PDOException $e) {
-                    echo 'Erro:' . $e;
+                  echo 'Erro:' . $e;
                 }
                 ?>
 

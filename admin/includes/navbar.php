@@ -16,15 +16,26 @@ if(isset($_GET['acao'])) {
 }
 
 $usuario = $_SESSION['usuario'];
+$nivel = $_SESSION['nivel'];
 
-$user = 'SELECT * FROM login WHERE usuario = :usuario';
+if($nivel == 9) {
+  $user = 'SELECT * FROM empresas WHERE email = :usuario';
+} else {
+  $user = 'SELECT * FROM login WHERE usuario = :usuario';
+}
+
 $resultado = $PDO->prepare($user);
 $resultado->bindValue(':usuario', $usuario, PDO::PARAM_STR);
 $resultado->execute();
 $count=$resultado->rowCount();
 if($count=1) {
     while($nomeUser = $resultado->fetch(PDO::FETCH_ASSOC)) {
+      if($nivel == 9) {
+        $nomeUsuario = $nomeUser['razao_social'];
+      } else {
         $nomeUsuario = $nomeUser['nome'];
+      }
+      
     }
 
 }
@@ -50,7 +61,7 @@ if($count=1) {
     </div>
     <div>
       <ul class="nav navbar-nav navbar-right">
-        <li>
+        <li <?php if($nivel == 9) {echo "style='display:none;'"; } ?>>
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Posts <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="postagens.php">Visualizar</a></li>
@@ -64,14 +75,14 @@ if($count=1) {
             <li><a href="cadastra_vaga.php">Cadastrar</a></li>
           </ul>
         </li>
-        <li>
+        <li <?php if($nivel == 9) {echo "style='display:none;'"; } ?>>
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Usuários <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="usuarios.php">Visualizar</a></li>
             <li><a href="cadastra_user.php">Cadastrar</a></li>
           </ul>
         </li>
-        <li><a href="/Blog-Programeiros/" ><span class="glyphicon glyphicon-bell"></span> Visualizar Site</a></li>
+        <li><a href="/Blog-Programeiros/" target="_blank"><span class="glyphicon glyphicon-bell"></span> Visualizar Site</a></li>
         <li><a href="logout.php" ><span class="glyphicon glyphicon-off"></span> Sair</a></li>
       </ul>
     </div>
