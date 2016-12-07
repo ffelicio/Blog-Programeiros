@@ -20,7 +20,14 @@
 }
 .text-p{
 	font-size: 17px;
-	font-family: 'Roboto', sans-serif; 
+	font-family: 'Roboto', sans-serif;
 	margin-top: 15px;
 	color: #fff;
+}
+.navbar-footer {
+
+	border-radius: 0px !important;
+	margin-bottom: 0px;
+	margin-top: 30px;
+	border: none;
 }

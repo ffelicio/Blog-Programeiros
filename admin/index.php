@@ -19,10 +19,14 @@ if(isset($_POST['login'])){
     $result->execute();
     $contar = $result->rowCount();
     if($contar>0) {
+      while($userData = $result->FETCH(PDO::FETCH_ASSOC)) {
+        $nivel = $userData['nivel'];
+      }
       $usuario =  $_POST['usuario'];
       $senha = $cript_pass;
       $_SESSION['usuario'] = $usuario;
       $_SESSION['senha'] = $cript_pass;
+      $_SESSION['nivel'] =
 
       header("Location:admin_page.php");
 
@@ -77,6 +81,6 @@ if(isset($_POST['login'])){
             <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" name="login">Entrar</button>
         </form><!-- /form -->
         <a href="#" class="forgot-password">Esqueceu sua senha?</a>
-        
+
     </div><!-- /card-container -->
   </div><!-- /container -->

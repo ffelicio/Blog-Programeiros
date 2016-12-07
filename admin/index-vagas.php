@@ -41,7 +41,7 @@ if(isset($_POST['login'])){
       exit();
     }
     }
-    
+
   } catch(PDOException $e) {
     echo 'Erro:' . $e;
   }
@@ -78,7 +78,7 @@ if(isset($_POST['login'])){
         <p id="profile-name" class="profile-name-card"></p>
         <form class="form-signin" method="post" action="#">
             <span id="reauth-email" class="reauth-email"></span>
-            <input type="text" id="campo_user" name="usuario" class="form-control" placeholder="E-mail de acesso" required autofocus>
+            <input type="email" id="campo_user" name="usuario" class="form-control" placeholder="E-mail de acesso" required autofocus>
             <input type="password" name="senha" id="campo_pass" class="form-control" placeholder="Senha" required>
             <div id="remember" class="checkbox">
               <label>
@@ -90,6 +90,6 @@ if(isset($_POST['login'])){
         </form><!-- /form -->
         <a href="#" class="forgot-password">Esqueceu sua senha?</a>
 
-        <a href="/Blog-Programeiros/pages/cadastro.php" class="btn btn-lg btn-success btn-block btn-signin">Cadastre-se</a>
+        <a href="/Blog-Programeiros/admin/cadastro.php" class="btn btn-lg btn-success btn-block btn-signin">Cadastre-se</a>
     </div><!-- /card-container -->
   </div><!-- /container -->

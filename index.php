@@ -66,7 +66,7 @@ include('includes/navbar.php');
 
   } else {
       echo "<h3>Não há posts cadastrados!</h3>";
-  } 
+  }
 
   if(isset($_POST['s'])) {
     $busca = $_POST['s'];
@@ -102,13 +102,12 @@ include('includes/navbar.php');
 
   ?>
 
+
+<!-- PAGINACAO */ -->
 <div class='col-md-12'>
   <nav aria-label="...">
     <ul class="pager">
       <li><a href="index.php?pg=1">Primeira Página</a></li>
-
-
-    <!-- PAGINACAO */ -->
 
     <?php
 
@@ -129,7 +128,7 @@ include('includes/navbar.php');
 
       for($i = $pg+1; $i <= $pg+$links; $i++) {
 
-      if($i>$paginas) { 
+      if($i>$paginas) {
 
       } else { ?>
 

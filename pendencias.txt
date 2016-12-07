@@ -1,3 +1,5 @@
 Adicionar campo de categoria ao editar post.
 
 bootstrap js no novo footer
+
+responsividade admin
