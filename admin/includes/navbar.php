@@ -35,7 +35,7 @@ if($count=1) {
       } else {
         $nomeUsuario = $nomeUser['nome'];
       }
-      
+
     }
 
 }
@@ -48,8 +48,8 @@ if($count=1) {
 <title>Programeiros - Sistema de Postagem</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<link href="../libs/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="../libs/font-awesome-4.7.0/css/font-awesome.min.css">
+<link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../assets/css/font-awesome.min.css">
 <link href="../assets/css/admin_navbar.css" rel="stylesheet">
 </head>
 <body>
@@ -57,7 +57,7 @@ if($count=1) {
     <div class="menu">
     <div class="container-fluid">
     <div class="navbar-header">
-      <a href="/Blog-Programeiros/admin/admin_page.php">Programeiros</a>
+      <a href="admin_page.php">Programeiros</a>
     </div>
     <div>
       <ul class="nav navbar-nav navbar-right">
@@ -82,7 +82,7 @@ if($count=1) {
             <li><a href="cadastra_user.php">Cadastrar</a></li>
           </ul>
         </li>
-        <li><a href="/Blog-Programeiros/" target="_blank"><span class="glyphicon glyphicon-bell"></span> Visualizar Site</a></li>
+        <li><a href="../index.php" target="_blank"><span class="glyphicon glyphicon-bell"></span> Visualizar Site</a></li>
         <li><a href="logout.php" ><span class="glyphicon glyphicon-off"></span> Sair</a></li>
       </ul>
     </div>
@@ -98,8 +98,3 @@ if($count=1) {
         </div>
 
 </nav>
-<script type="text/javascript">
-  function showSite() {
-    window.open("../index.php");
-  }
-</script>

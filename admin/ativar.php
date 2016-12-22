@@ -33,7 +33,7 @@
 	  } else {
 	  	header("location:http://localhost/Blog-Programeiros/admin/ativar.php?token'$token'&err=" . urlencode('Esta conta já foi ativada anteriomente!'));
 	  }
-	  
+
 	}
 
 ?>
@@ -46,7 +46,7 @@
     <title>Cadastro</title>
     <!-- Imports de libs -->
     <link rel="stylesheet" type="text/css" href="../assets/css/admin.css">
-    <link href="/Blog-Programeiros/libs/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
 		<div class="container">
@@ -61,11 +61,11 @@
     <?php if(isset($_GET['err'])) : ?>
 
       <div class="alert alert-danger"><?= $_GET['err'] ?></div>
-  
+
     <?php endif; ?>
 
-    <a href="http://localhost/Blog-Programeiros" class="btn btn-primary">Voltar para o site!</a>
-    <a href="http://localhost/Blog-Programeiros/admin/index-vagas.php"  class="btn btn-success">Faça login!</a>
+    <a href="../index.php" class="btn btn-primary">Voltar para o site!</a>
+    <a href="index-vagas.php"  class="btn btn-success">Faça login!</a>
 
     	</div>
 		</div>

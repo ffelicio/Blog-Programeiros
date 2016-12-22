@@ -2,10 +2,10 @@
 
 define('TITLE','Post Único');
 
-include('../includes/config.php');
-include('../includes/db.php');
+include('includes/config.php');
+include('includes/db.php');
 
-include('../includes/navbar.php');
+include('includes/navbar.php');
 
   if(isset($_GET['id'])) {
 
@@ -13,7 +13,7 @@ include('../includes/navbar.php');
 
   } else {
 
-    echo "<script>location.href='/Blog-Programeiros/vagas.php'</script>";
+    echo "<script>location.href='vagas.php'</script>";
 
   }
 
@@ -58,8 +58,8 @@ include('../includes/navbar.php');
 
 <?php
 
-  include ("../includes/sidebar.php");
+  include ("includes/sidebar.php");
 
-  include ("../includes/footer.php");
+  include ("includes/footer.php");
 
 ?>

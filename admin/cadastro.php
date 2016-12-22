@@ -73,7 +73,7 @@ if(isset($_POST['cadastrar'])){
     <title>Cadastro</title>
     <!-- Imports de libs -->
     <link rel="stylesheet" type="text/css" href="../assets/css/admin.css">
-    <link href="/Blog-Programeiros/libs/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
 
@@ -86,7 +86,7 @@ if(isset($_POST['cadastrar'])){
     <?php if(isset($_GET['err'])) : ?>
 
       <div class="alerta alerta-erro"><?= $_GET['err'] ?></div>
-  
+
     <?php endif; ?>
 
     <div class="container">
@@ -115,7 +115,7 @@ if(isset($_POST['cadastrar'])){
               <label for="tel2">Telefone 2 :</label>
               <input type="text" class="form-control telefone" id="tel2" name="tel2" placeholder="Telefone 2" required>
             </div>
-            
+
             <div class="form-group col-md-6">
               <label for="senha">Senha :</label>
               <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha para acesso" required>
@@ -154,9 +154,9 @@ if(isset($_POST['cadastrar'])){
               <label for="cep">CEP :</label>
               <input type="text" class="form-control" id="cep" name="cep" placeholder="* CEP" required>
             </div>
-            
+
             <input type="submit" class="form-control btn btn-success" name="cadastrar" value="Efetuar Cadastro">
-            
+
           </form>
         </div>
       </div>
@@ -186,41 +186,41 @@ if(isset($_POST['cadastrar'])){
       });
     </script>
     <script>
-    
+
     $(document).ready(function() {
-    
+
       $.getJSON('estados_cidades.json', function (data) {
         var items = [];
-        var options = '<option value="">-- UF --</option>';  
+        var options = '<option value="">-- UF --</option>';
         $.each(data, function (key, val) {
           options += '<option value="' + val.sigla + '">' + val.nome + '</option>';
-        });         
-        $("#estados").html(options);        
-        
-        $("#estados").change(function () {        
-        
+        });
+        $("#estados").html(options);
+
+        $("#estados").change(function () {
+
           var options_cidades = '';
-          var str = "";         
-          
+          var str = "";
+
           $("#estados option:selected").each(function () {
             str += $(this).text();
           });
-          
+
           $.each(data, function (key, val) {
-            if(val.nome == str) {             
+            if(val.nome == str) {
               $.each(val.cidades, function (key_city, val_city) {
                 options_cidades += '<option value="' + val_city + '">' + val_city + '</option>';
-              });             
+              });
             }
           });
           $("#cidades").html(options_cidades);
-          
-        }).change();    
-      
+
+        }).change();
+
       });
-    
+
     });
-    
-  </script>   
+
+  </script>
   </body>
 </html>

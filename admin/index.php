@@ -50,7 +50,7 @@ if(isset($_POST['login'])){
     <title>Login - Admin</title>
     <!-- Imports de libs -->
     <link rel="stylesheet" type="text/css" href="../assets/css/admin.css">
-    <link href="/Blog-Programeiros/libs/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
     <div class="container">

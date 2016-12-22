@@ -57,7 +57,7 @@ if(isset($_POST['login'])){
     <title>Login - Admin</title>
     <!-- Imports de libs -->
     <link rel="stylesheet" type="text/css" href="../assets/css/admin.css">
-    <link href="/Blog-Programeiros/libs/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
     <div class="container">
@@ -90,6 +90,6 @@ if(isset($_POST['login'])){
         </form><!-- /form -->
         <a href="#" class="forgot-password">Esqueceu sua senha?</a>
 
-        <a href="/Blog-Programeiros/admin/cadastro.php" class="btn btn-lg btn-success btn-block btn-signin">Cadastre-se</a>
+        <a href="cadastro.php" class="btn btn-lg btn-success btn-block btn-signin">Cadastre-se</a>
     </div><!-- /card-container -->
   </div><!-- /container -->

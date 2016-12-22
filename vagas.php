@@ -1,10 +1,10 @@
 <?php
 
-@define(TITLE, "Programeiros | Blog");
+@define(TITLE, "Programeiros | Vagas");
 
-include('../includes/config.php');
-include('../includes/db.php');
-include('../includes/navbar.php');
+include('includes/config.php');
+include('includes/db.php');
+include('includes/navbar.php');
 
 ?>
 
@@ -54,7 +54,7 @@ include('../includes/navbar.php');
 
   <div class="vagas">
           <div class='col-md-12'>
-            <a href='/Blog-Programeiros/pages/vaga.php?id=<?php echo $vagas['id_vaga']; ?>'><h3><?php echo $vagas['titulo_vaga']; ?> - <?php echo $vagas['local']; ?></h3></a>
+            <a href='vaga.php?id=<?php echo $vagas['id_vaga']; ?>'><h3><?php echo $vagas['titulo_vaga']; ?> - <?php echo $vagas['local']; ?></h3></a>
             <p><i><?php echo $vagas['divulgador']; ?></i></p>
             <p><?php echo strip_tags($descricao); ?>...</p><hr>
           </div>
@@ -98,7 +98,6 @@ include('../includes/navbar.php');
   }
 
   ?>
-
 
 <!-- PAGINACAO */ -->
 <div class='col-md-12'>
@@ -148,8 +147,8 @@ include('../includes/navbar.php');
 
 <?php
 
-  include ("../includes/sidebar.php");
+  include ("includes/sidebar.php");
 
-  include ("../includes/footer.php");
+  include ("includes/footer.php");
 
 ?>

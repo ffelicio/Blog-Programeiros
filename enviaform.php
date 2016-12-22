@@ -7,7 +7,7 @@
 //This should be done in your php.ini, but this is how to do it if you don't have access to that
 date_default_timezone_set('America/Sao_Paulo');
 
-require '../phpmailer/PHPMailerAutoload.php';
+require 'phpmailer/PHPMailerAutoload.php';
 
 //Create a new PHPMailer instance
 $mail = new PHPMailer;
@@ -77,5 +77,3 @@ if (!$mail->send()) {
 	header('location: cadastro.php?success=' . urldecode('Um e-mail de ativação foi enviado!'));
     return true;
 }
-
-
