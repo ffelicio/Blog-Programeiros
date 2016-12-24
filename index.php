@@ -1,158 +1,127 @@
 <?php
 
-@define(TITLE, "Programeiros");
+require "vendor/autoload.php";
+$url = new \DRouter\App();
+$url->render->setViewsFolder('./');
 
-include('includes/config.php');
-include('includes/db.php');
-include('includes/navbar.php');
+$url->get('/', function() {
+  $this->render->load("home.php", [
+    "" => ""
+  ]);
+});
 
-?>
+$url->get('/quem-somos', function() {
+  $this->render->load("quem-somos.php", [
+    "" => ""
+  ]);
+});
 
-<div class="col-md-8">
-  <h1 class="title-main">Área de Postagens</h1>
-    <div class="row">
-  <?php
+$url->get('/vagas', function() {
+  $this->render->load("vagas.php", [
+    "" => ""
+  ]);
+});
 
-  if(!empty($_GET['pg'])) {
-    $pg = $_GET['pg'];
-    if(!is_numeric($pg)) {
-    echo "<script>location.href='index.php</script>";
-    }
+$url->get('/vagas/:pagina', function($pagina) {
+  $this->render->load("vagas.php", [
+    "pg" => $pagina
+  ]);
+});
+
+$url->get('/vagas/:pagina/:vid', function($pagina, $vid) {
+  if ($pagina == 0) {
+    $this->render->load("vagas.php", [
+      "vid" => $vid
+    ]);
+  }else {
+    $this->render->load("vagas.php", [
+      "pg" => $pagina,
+      "vid" => $vid
+    ]);
   }
+});
 
-  if(isset($pg)) {
-      $pg = $_GET['pg'];
-  } else {
-      $pg = 1;
+$url->get('/vaga', function() {
+  $this->render->load("vaga.php", [
+    "" => ""
+  ]);
+});
+
+$url->get('/vaga/:vid', function($vid) {
+  $this->render->load("vaga.php", [
+    "id" => $vid
+  ]);
+});
+
+$url->get('/contato', function() {
+  $this->render->load("contato.php", [
+    "" => ""
+  ]);
+});
+
+$url->get('/categoria', function() {
+  header("Location: /");
+});
+
+$url->get('/categoria/:id', function($id) {
+  $this->render->load("categoria.php", [
+    "ctg" => $id
+  ]);
+});
+
+$url->get('/categoria/:id/:pagina', function($id, $pagina) {
+  $this->render->load("categoria.php", [
+    "ctg" => $id,
+    "pg" => $pagina
+  ]);
+});
+
+$url->get('/post/:id', function($id) {
+  $this->render->load("post.php", [
+    "pid" => $id
+  ]);
+});
+
+// URL(s) em desenvolvimento á baixo
+
+$url->get('/cadastro', function() {
+  header("Location: /");
+});
+
+$url->get('/cadastro/:eos', function($eos) {
+  if ($eos == "err") {
+    $this->render->load("cadastro.php", [
+      "err" => "Erro ao enviar mensagem!"
+    ]);
+  }elseif ($eos == "success") {
+    $this->render->load("cadastro.php", [
+      "success" => "Um e-mail de ativação foi enviado!"
+    ]);
   }
+});
 
-  $quantidade = 6; // quantidade de resultados por página
+// Fim da(s) URL(s) em desenvolvimento
 
-  $inicio = ($pg * $quantidade) - $quantidade;
+// URL(s) á baixo são para acessar o(s) teste(s) feito(s) por mim(Meratsunosu)
 
-  if(isset($_POST['s'])) {
-    $busca = $_POST['s'];
-    $query = "SELECT * FROM tb_postagens WHERE titulo LIKE '%$busca%' OR conteudo LIKE '%$busca%' OR categoria LIKE '%$busca%' ORDER BY id";
-  } else {
-    $query = "SELECT * FROM tb_postagens ORDER BY id DESC LIMIT $inicio, $quantidade";
-  }
+$url->get('/developers_tests/test1', function() {
+  $this->render->load("tests_by_developers/testURL.php", [
+    "" => ""
+  ]);
+});
 
-  $contagem = 1;
+$url->get('/developers_tests/test1/:var', function($var) {
+  $this->render->load("tests_by_developers/testURL.php", [
+    "testdinamicvar" => $var
+  ]);
+});
 
-  $stmt = $PDO->prepare($query);
-  $stmt->execute();
-  $contar = $stmt->rowCount();
+// Fim das URLs de teste
 
-  $conteudo = '';
-  if($contar>0) {
-    while ($posts = $stmt->fetch(PDO::FETCH_ASSOC)):
+$url->get('/:pagina', function($pagina) {
+  $this->render->load("home.php", [
+    "pg" => $pagina
+  ]);
+});
 
-  $conteudo = substr($posts['conteudo'],0,100);
-
-  ?>
-
-  <div class='col-md-6'>
-    <div class='thumbnail'>
-      <a href='post.php?id=<?php echo $posts['id']; ?>'><h3 class="titulo-thumb"><?php echo $posts['titulo']; ?></h3>
-      <img src='upload/postagens/<?php echo $posts['imagem'] ?>' alt=''></a>
-      <div class='caption'>
-        <p><?php echo strip_tags($conteudo); ?>...</p><br>
-        <p><a href='post.php?id=<?php echo $posts['id']; ?>' class='btn btn-primary pull-right btn-mais' role='button'>Ler Mais</a></p>
-      </div>
-    </div>
-  </div>
-
-  <?php endwhile;
-
-  } else {
-      echo "<h3>Não há posts cadastrados!</h3>";
-  }
-
-  if(isset($_POST['s'])) {
-    $busca = $_POST['s'];
-
-    $sql = "SELECT * FROM tb_postagens WHERE titulo LIKE '%$busca%' OR conteudo LIKE '%$busca%' OR categoria LIKE '%$busca%'";
-
-  } else {
-
-    $sql = "SELECT * FROM tb_postagens";
-  }
-
-  try {
-    $result = $PDO->prepare($sql);
-    $result->execute();
-    $totalRegistros = $result->rowCount();
-  } catch(PDOException $e) {
-      echo 'Erro:' . $e;
-  }
-  if($totalRegistros <= $quantidade) {
-
-  } else {
-    $paginas = ceil($totalRegistros/$quantidade);
-    if($pg > $paginas) {
-        echo "<script>location.href='index.php';</script>";
-    }
-    $links = 5;
-
-  if(isset($i)) {
-
-  } else {
-      $i = '1';
-  }
-
-  ?>
-
-
-<!-- PAGINACAO */ -->
-<div class='col-md-12'>
-  <nav aria-label="...">
-    <ul class="pager">
-      <li><a href="index.php?pg=1">Primeira Página</a></li>
-
-    <?php
-
-      if(isset($_GET['pg'])) {
-          $num_pg = $_GET['pg'];
-      }
-
-      for($i = $pg-$links; $i <= $pg-1; $i++) {
-          if($i<=0) {} else { ?>
-
-              <li><a href="index.php?pg=<?php echo $i; ?>"><?php echo $i; ?></a></li>
-
-    <?php } } ?>
-
-      <li><a href="#" class="active<?php echo $i; ?>"><?php echo $pg; ?></a></li>
-
-    <?php
-
-      for($i = $pg+1; $i <= $pg+$links; $i++) {
-
-      if($i>$paginas) {
-
-      } else { ?>
-
-          <li><a href="index.php?pg=<?php echo $i; ?>" class="active<?php echo $i; ?>"><?php echo $i; ?></a></li>
-
-      <?php } } ?>
-
-      <li><a href="index.php?pg=<?php echo $paginas; ?>">Última Página</a></li>
-
-      </ul>
-
-    </nav>
-
-    <?php } ?>
-
-  </div>
-
-</div>
-
-
-<?php
-
-  include ("includes/sidebar.php");
-
-  include ("includes/footer.php");
-
-?>
+$url->run();

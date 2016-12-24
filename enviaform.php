@@ -72,8 +72,8 @@ $mail->Body .= $mensagem;
 //send the message, check for errors
 if (!$mail->send()) {
     //echo "Mailer Error: " . $mail->ErrorInfo;
-    header('location: cadastro.php?err=' . urldecode('Erro ao enviar mensagem!'));
+    header('location: /cadastro/err');
 } else {
-	header('location: cadastro.php?success=' . urldecode('Um e-mail de ativação foi enviado!'));
-    return true;
+	header('location: /cadastro/success');
+  return true;
 }

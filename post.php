@@ -7,14 +7,10 @@ include('includes/db.php');
 
 include('includes/navbar.php');
 
-  if(isset($_GET['id'])) {
-
-    $id = $_GET['id'];
-
+  if(!isset($pid)) {
+    header('location: /');
   } else {
-
-    echo "<script>location.href='index.php'</script>";
-
+    $id = $pid;
   }
 
   $sql = "SELECT * FROM tb_postagens WHERE id=:id";
@@ -55,7 +51,7 @@ include('includes/navbar.php');
 
   <div class="col-md-8">
     <h1 class="text-center main-title"><?php echo $titulo; ?></h1><br>
-    <img src="upload/postagens/<?php echo $imagem; ?>" alt="" class="img-responsive">
+    <img src="../upload/postagens/<?php echo $imagem; ?>" alt="" class="img-responsive">
 
     <br>
 
@@ -68,7 +64,7 @@ include('includes/navbar.php');
     <div class="alert alert-usuario autor">
       <div class="row">
         <div class="col-md-2">
-          <img src="upload/users/<?php echo $thumb; ?>" alt="<?php echo $nome; ?>" class="img-usuario">
+          <img src="../upload/users/<?php echo $thumb; ?>" alt="<?php echo $nome; ?>" class="img-usuario">
         </div>
         <div class="col-md-8">
           <div class="texto-user">

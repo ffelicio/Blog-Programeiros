@@ -13,17 +13,12 @@ include('includes/navbar.php');
     <div class="row">
   <?php
 
-  if(!empty($_GET['pg'])) {
-    $pg = $_GET['pg'];
-    if(!is_numeric($pg)) {
-    echo "<script>location.href='vagas.php</script>";
-    }
-  }
-
   if(isset($pg)) {
-      $pg = $_GET['pg'];
+    if(!is_numeric($pg)) {
+      echo "<script>location.href='/vagas'</script>";
+    }
   } else {
-      $pg = 1;
+    $pg = 1;
   }
 
   $quantidade = 5; // quantidade de resultados por página
@@ -54,7 +49,7 @@ include('includes/navbar.php');
 
   <div class="vagas">
           <div class='col-md-12'>
-            <a href='vaga.php?id=<?php echo $vagas['id_vaga']; ?>'><h3><?php echo $vagas['titulo_vaga']; ?> - <?php echo $vagas['local']; ?></h3></a>
+            <a href='/vaga/<?php echo $vagas['id_vaga']; ?>'><h3><?php echo $vagas['titulo_vaga']; ?> - <?php echo $vagas['local']; ?></h3></a>
             <p><i><?php echo $vagas['divulgador']; ?></i></p>
             <p><?php echo strip_tags($descricao); ?>...</p><hr>
           </div>
@@ -87,7 +82,7 @@ include('includes/navbar.php');
   } else {
     $paginas = ceil($totalRegistros/$quantidade);
     if($pg > $paginas) {
-        echo "<script>location.href='vagas.php';</script>";
+        echo "<script>location.href='/vagas';</script>";
     }
     $links = 5;
 
@@ -107,14 +102,14 @@ include('includes/navbar.php');
 
     <?php
 
-      if(isset($_GET['pg'])) {
-          $num_pg = $_GET['pg'];
+      if(isset($pg)) {
+        $num_pg = $pg;
       }
 
       for($i = $pg-$links; $i <= $pg-1; $i++) {
           if($i<=0) {} else { ?>
 
-              <li><a href="vagas.php?pg=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+              <li><a href="/vagas/0/<?php echo $i; ?>"><?php echo $i; ?></a></li>
 
     <?php } } ?>
 
@@ -128,11 +123,11 @@ include('includes/navbar.php');
 
       } else { ?>
 
-          <li><a href="vagas.php?pg=<?php echo $i; ?>" class="active<?php echo $i; ?>"><?php echo $i; ?></a></li>
+          <li><a href="/vagas/0<?php echo $i; ?>" class="active<?php echo $i; ?>"><?php echo $i; ?></a></li>
 
       <?php } } ?>
 
-      <li><a href="vagas.php?pg=<?php echo $paginas; ?>">Última Página</a></li>
+      <li><a href="/vagas/<?php echo $paginas; ?>">Última Página</a></li>
 
       </ul>
 

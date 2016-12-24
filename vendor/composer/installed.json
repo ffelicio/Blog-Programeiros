@@ -1,0 +1,48 @@
+[
+    {
+        "name": "lukasdev/drouter",
+        "version": "2.4.2",
+        "version_normalized": "2.4.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/lukasdev/DRouter.git",
+            "reference": "f8e348deb1015b9541edba4d18d14ec7383a8ad0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/lukasdev/DRouter/zipball/f8e348deb1015b9541edba4d18d14ec7383a8ad0",
+            "reference": "f8e348deb1015b9541edba4d18d14ec7383a8ad0",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0"
+        },
+        "time": "2016-11-20 22:12:52",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "DRouter\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Lucas Silva",
+                "email": "dev.lucassilva@gmail.com",
+                "role": "Developer"
+            }
+        ],
+        "description": "Um sistema simplista de roteamento, com o intuito de ser utilizado em aplicacoes web pequenas e webservices REST",
+        "homepage": "https://github.com/lukasdev/DRouter",
+        "keywords": [
+            "api",
+            "microframework",
+            "rest",
+            "router"
+        ]
+    }
+]

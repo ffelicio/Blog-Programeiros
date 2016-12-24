@@ -12,10 +12,10 @@
   </div>
   </footer>
   <!-- Import and libs and css -->
-  <link rel="stylesheet" type="text/css" href="/Blog-Programeiros/assets/css/footer.css"/>
-  <link href="/Blog-Programeiros/libs/font-awesome/4.2.0/css/font-awesome.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/footer.css"/>
+  <link href="../assets/css/font-awesome.min.css"/>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script type="text/javascript" src="/Blog-Programeiros/assets/js/bootstrap.js"></script>
+  <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 
-@define(TITLE, "Programeiros | Blog");
+@define(TITLE, "Programeiros");
 
 include('includes/config.php');
 include('includes/db.php');
@@ -18,23 +18,23 @@ include('includes/navbar.php');
       echo "<script>location.href='/'</script>";
     }
   } else {
-    $pg = 1;
+      $pg = 1;
   }
 
   $quantidade = 6; // quantidade de resultados por página
 
   $inicio = ($pg * $quantidade) - $quantidade;
 
-  if(!isset($ctg)) {
-    header('location: /');
+  if(isset($_POST['s'])) {
+    $busca = $_POST['s'];
+    $query = "SELECT * FROM tb_postagens WHERE titulo LIKE '%$busca%' OR conteudo LIKE '%$busca%' OR categoria LIKE '%$busca%' ORDER BY id";
   } else {
-    $categoria = $ctg;
-    $sql = "SELECT * FROM tb_postagens WHERE categoria = '$categoria' ORDER BY id DESC LIMIT 6";
+    $query = "SELECT * FROM tb_postagens ORDER BY id DESC LIMIT $inicio, $quantidade";
   }
 
   $contagem = 1;
 
-  $stmt = $PDO->prepare($sql);
+  $stmt = $PDO->prepare($query);
   $stmt->execute();
   $contar = $stmt->rowCount();
 
@@ -48,8 +48,8 @@ include('includes/navbar.php');
 
   <div class='col-md-6'>
     <div class='thumbnail'>
-      <a href='post.php?id=<?php echo $posts['id']; ?>'><h3 class="titulo-thumb"><?php echo $posts['titulo']; ?></h3>
-      <img src='../upload/postagens/<?php echo $posts['imagem'] ?>' alt=''></a>
+      <a href='post/<?php echo $posts['id']; ?>'><h3 class="titulo-thumb"><?php echo $posts['titulo']; ?></h3>
+      <img src='upload/postagens/<?php echo $posts['imagem'] ?>' alt=''></a>
       <div class='caption'>
         <p><?php echo strip_tags($conteudo); ?>...</p><br>
         <p><a href='post.php?id=<?php echo $posts['id']; ?>' class='btn btn-primary pull-right btn-mais' role='button'>Ler Mais</a></p>
@@ -78,7 +78,7 @@ include('includes/navbar.php');
     $result->execute();
     $totalRegistros = $result->rowCount();
   } catch(PDOException $e) {
-      echo 'Erro:' . $e;
+      echo 'Erro: ' . $e;
   }
   if($totalRegistros <= $quantidade) {
 
@@ -102,7 +102,7 @@ include('includes/navbar.php');
 <div class='col-md-12'>
   <nav aria-label="...">
     <ul class="pager">
-      <li><a href="index.php?pg=1">Primeira Página</a></li>
+      <li><a href="/1">Primeira Página</a></li>
 
     <?php
 
@@ -113,7 +113,7 @@ include('includes/navbar.php');
       for($i = $pg-$links; $i <= $pg-1; $i++) {
           if($i<=0) {} else { ?>
 
-              <li><a href="index.php?pg=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+              <li><a href="/<?php echo $i; ?>"><?php echo $i; ?></a></li>
 
     <?php } } ?>
 
@@ -127,11 +127,11 @@ include('includes/navbar.php');
 
       } else { ?>
 
-          <li><a href="/?pg=<?php echo $i; ?>" class="active<?php echo $i; ?>"><?php echo $i; ?></a></li>
+          <li><a href="/<?php echo $i; ?>" class="active<?php echo $i; ?>"><?php echo $i; ?></a></li>
 
       <?php } } ?>
 
-      <li><a href="/?pg=<?php echo $paginas; ?>">Última Página</a></li>
+      <li><a href="/<?php echo $paginas; ?>">Última Página</a></li>
 
       </ul>
 

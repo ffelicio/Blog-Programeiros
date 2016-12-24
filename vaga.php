@@ -7,13 +7,11 @@ include('includes/db.php');
 
 include('includes/navbar.php');
 
-  if(isset($_GET['id'])) {
-
-    $id = $_GET['id'];
+  if(isset($id)) {
 
   } else {
 
-    echo "<script>location.href='vagas.php'</script>";
+    echo "<script>location.href='/vagas'</script>";
 
   }
 

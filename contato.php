@@ -9,7 +9,7 @@ include('includes/navbar.php');
 <div class="contato">
   <div class="col-md-8">
     <h1 class="title-main">Entre em contato conosco!</h1>
-    <form>
+    <form method="post" action="enviaform.php">
     <div class="form-group">
       <input type="text" class="form-control" placeholder=" * Nome" autofocus>
     </div>
